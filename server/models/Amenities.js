@@ -19,9 +19,9 @@ const amenitiesSchema = new Schema(
       // the types of amenities will be limited to a specific list - determine whether to have a separate model or subdocument for these
     },
   },
-{
-  timestamps: true,
-},
+  {
+    timestamps: true,
+  },
 );
 
 const Amenity = model('Amenity', amenitiesSchema);

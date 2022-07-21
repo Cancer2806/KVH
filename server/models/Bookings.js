@@ -16,35 +16,40 @@ const bookingsSchema = new Schema(
       type: Date,
       required: true,
     },
-    guestName: {
-      type: [guestSchema],
-      required: true,
-    },
+    guestName: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Guest',
+      // required: true,
+      },
+    ],
     cottageName: {
-      type: [cottageSchema],
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Cottage',
+      // required: true,
     },
     dateBooked: {
       type: Date,
       required: true,
+      default: Date.now,
     },
     dateConfirmed: {
       type: Date,
     },
     deposit: {
-      type: Float,
+      type: Number,
     },
     balance: {
-      type: Float,
+      type: Number,
     },
     numAdults: {
-      type: Integer,
+      type: Number,
     },
     numChildren: {
-      type: Integer,
+      type: Number,
     },
     numPets: {
-      type: Integer,
+      type: Number,
     },
     payment: {
       type: String,

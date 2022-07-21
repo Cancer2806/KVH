@@ -13,7 +13,6 @@ const guestSchema = new Schema(
     guestName: {
       type: String,
       required: true,
-      unique: true,
     },
     guestEmail: {
       type: String,

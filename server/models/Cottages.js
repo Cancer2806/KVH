@@ -25,22 +25,22 @@ const cottageSchema = new Schema(
       required: true,
     },
     amenities: {
-      type: [amenitiesSchema],
+      type: [Amenity.schema],
     },
     maxGuests: {
-      type: Integer,
+      type: Number,
       required: true,
     },
     images: {
-      type: [images],
+      type: [String],
       // array of images or image addresses
     },
     rate: {
-      type: Float,
+      type: Number,
       required: true,
     },
     bookings: {
-      type: [bookingsSchema],
+      type: [Booking.Schema],
     },
   },
   {
@@ -50,6 +50,6 @@ const cottageSchema = new Schema(
 
 // TODO minStays parameter to be added.  
 
-const Cottage = model('Cottage', userSchema);
+const Cottage = model('Cottage', cottageSchema);
 
 module.exports = Cottage;
