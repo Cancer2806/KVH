@@ -1,10 +1,12 @@
 // Import required dependencies
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
+
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas/index');
-const { authMiddleware } = require('./utils/auth');
+// const { authMiddleware } = require('./utils/auth');
 
 // Configure Express, Apollo and ports
 const app = express();
@@ -13,8 +15,9 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  // context: authMiddleware,
 });
+
 
 // Define Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -38,7 +41,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   // Open database and start server
   db.once('open', () => {
     app.listen(PORT, () => {
-      console.log(`🌍 Now listening on http://localhost:${PORT}!`)
+      console.log(`🌍 Now listening on http://localhost:${PORT}`)
       console.log(`GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
     });
   });

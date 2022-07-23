@@ -9,7 +9,7 @@ const typeDefs = gql`
     cottageName: String!
     roomType: String!
     cottageDescription: String
-    # amenities: [Amenity]
+    amenities: [Amenity]
     maxGuests: Int!
     # images: [String]
     # bookings: [Booking]
@@ -22,20 +22,20 @@ const typeDefs = gql`
   }
 
 type Query {
-  viewCottages: Cottage
+  viewCottages: [Cottage]
 }
 
-type Mutation {
-  updateCottage(
-    cottageName: String!
-    roomType: String!
-    cottageDescription: String
-    # amenities: [Amenity]
-    maxGuests: Int!
-    # images: [String]
-    # bookings: [Booking]
-  )
-}
+# type Mutation {
+#   updateCottage(
+#     cottageName: String!
+#     roomType: String!
+#     cottageDescription: String
+#     # amenities: [Amenity]
+#     maxGuests: Int!
+#     # images: [String]
+#     # bookings: [Booking]
+#   )
+# }
 `;
 
 module.exports = typeDefs;
