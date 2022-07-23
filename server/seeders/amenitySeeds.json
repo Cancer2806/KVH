@@ -1,0 +1,22 @@
+[
+  {
+    "amenityName": "TV",
+    "amenityDescription": "Satellite TV with Free to Air Channels",
+    "amenityType": "Entertain"
+  },
+  {
+    "amenityName": "Spa",
+    "amenityDescription": "Separate spa under bedroom window",
+    "amenityType": "Pleasure"
+  },
+  {
+    "amenityName": "Spa Bath",
+    "amenityDescription": "Spa bath (bathroom)",
+    "amenityType": "Fun"
+  },
+  {
+    "amenityName": "Log Fire",
+    "amenityDescription": "Lovely log fire with wood provided",
+    "amenityType": "Warmth"
+  }
+]

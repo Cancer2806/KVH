@@ -5,7 +5,7 @@ const { Schema, model } = require('mongoose');
 
 // Model will be used to contain the full selection of amenities.  A cottage may have some or all of them
 
-const amenitiesSchema = new Schema(
+const amenitySchema = new Schema(
   {
     amenityName: {
       type: String,
@@ -24,6 +24,6 @@ const amenitiesSchema = new Schema(
   },
 );
 
-const Amenity = model('Amenity', amenitiesSchema);
+const Amenity = model('Amenity', amenitySchema);
 
 module.exports = Amenity;

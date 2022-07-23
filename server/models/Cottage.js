@@ -6,10 +6,15 @@ const { Schema, model } = require('mongoose');
 // TODO either here or in separate file - passwords and hashing with bcrypt
 
 // const bookingsSchema = require('./Bookings');
-const amenitiesSchema = require('./Amenity');
+const Amenity = require('./Amenity');
 
 const cottageSchema = new Schema(
   {
+    cottageNumber: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
     cottageName: {
       type: String,
       required: true,
@@ -36,7 +41,7 @@ const cottageSchema = new Schema(
       type: [String],
       // array of images or image addresses
     },
-    rate: {
+    baseRate: {
       type: Number,
       required: true,
     },

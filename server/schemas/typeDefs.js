@@ -6,6 +6,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Cottage {
     _id: ID!
+    cottageNumber: Number!
     cottageName: String!
     roomType: String!
     cottageDescription: String
