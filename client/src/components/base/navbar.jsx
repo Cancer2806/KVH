@@ -4,17 +4,19 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Home', href: '#', current: true },
+  { name: 'Our Cottages', href: '#', current: false },
+  { name: 'Bookings', href: '#', current: false },
+  { name: 'Attractions', href: '#', current: false },
+  { name: 'Location', href: '#', current: false },
+  { name: 'Contact Us', href: '#', current: false },
 ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -36,12 +38,12 @@ export default function Example() {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                     alt="Workflow"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                     alt="Workflow"
                   />
                 </div>

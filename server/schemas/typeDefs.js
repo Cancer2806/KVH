@@ -12,7 +12,7 @@ const typeDefs = gql`
     cottageDescription: String
     amenities: [Amenity]
     maxGuests: Int!
-    # images: [String]
+    images: [String]
     # bookings: [Booking]
   }
 
@@ -26,6 +26,8 @@ const typeDefs = gql`
   type Property {
     _id: ID!
     propertyName: String!
+    propertyLogo: String
+    propertyDescription: String
     streetAddress: String
     postalAddress: String
     phoneNumber: String

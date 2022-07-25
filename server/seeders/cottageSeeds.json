@@ -5,7 +5,8 @@
     "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
-    "baseRate": 175.00
+    "baseRate": 175.00,
+    "images": "/assets/images/footerlogo.png"
   },
   {
     "cottageNumber": 2,
@@ -13,7 +14,8 @@
     "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
-    "baseRate": 195.00
+    "baseRate": 195.00,
+    "images": "/assets/images/img01338990663.jpg"
   },
   {
     "cottageNumber": 3,

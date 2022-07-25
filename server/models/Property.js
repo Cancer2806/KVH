@@ -8,6 +8,13 @@ const propertySchema = new Schema(
       type: String,
       required: true,
     },
+    propertyLogo: {
+      type: String,
+      // path to logo image
+    },
+    propertyDescription: {
+      type: String,
+    },
     streetAddress: {
       type: String,
     },
