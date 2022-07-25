@@ -12,21 +12,21 @@ const cottageSchema = new Schema(
   {
     cottageNumber: {
       type: Number,
-      required: true,
+      required: [true, `Please provide a cottage number`],
       unique: true,
     },
     cottageName: {
       type: String,
-      required: true,
+      required: [true, `Don't forget the cottage name`],
       unique: true,
     },
     cottageDescription: {
       type: String,
-      required: true,
+      required: [true, `Please include the cottage description`],
     },
     numRooms: {
       type: Number,
-      required: true,
+      required: [true, `How many rooms does the cottage have?`],
     },
     amenities: {
       type: Schema.Types.ObjectId,
@@ -34,7 +34,7 @@ const cottageSchema = new Schema(
     },
     maxGuests: {
       type: Number,
-      required: true,
+      required: [true, `What is the maximum number of guests`],
     },
     images: {
       type: [String],

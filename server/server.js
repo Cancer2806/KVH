@@ -1,7 +1,7 @@
 // Import required dependencies
 const express = require('express');
 const path = require('path');
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
