@@ -1,10 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
+// Navbar component
+
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 
 const navigation = [
-  { name: 'Home', href: '#', current: true },
+  { name: 'Home', href: '/', current: true },
   { name: 'Our Cottages', href: '#', current: false },
   { name: 'Bookings', href: '#', current: false },
   { name: 'Attractions', href: '#', current: false },
@@ -36,16 +37,17 @@ export default function Navbar() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
+                  <a href="/">
                   <img
-                    className="block lg:hidden h-8 w-auto"
+                    className="block lg:hidden h-8 w-auto bg-white"
                     src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                     alt="Workflow"
-                  />
+                    />
                   <img
-                    className="hidden lg:block h-8 w-auto"
+                    className="hidden lg:block h-8 w-auto bg-white"
                     src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                     alt="Workflow"
-                  />
+                    /></a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">

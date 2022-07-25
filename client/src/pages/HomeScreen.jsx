@@ -19,7 +19,6 @@ const HomeScreen = () => {
     //  data.map
     cottages.map((cottage, index) => {
       return (
-        <>
         <div className="container">
           <Card
             img={cottage.images[0]}
@@ -30,7 +29,6 @@ const HomeScreen = () => {
             text={cottage.cottageDescription}
           />
           </div>
-        </>
       )
     })
   );
