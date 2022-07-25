@@ -1,6 +1,7 @@
 import './App.css';
 import Dropdown from '../src/components/base/dropdown'
 import Navbar from '../src/components/base/navbar'
+import Cards from '../src/components/base/cards'
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <Navbar />
       <br></br>
       <Dropdown />
+
+      <Cards />
      
     </div>
   );

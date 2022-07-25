@@ -2,7 +2,7 @@
   {
     "cottageNumber": 1,
     "cottageName": "Peppermint",
-    "roomType": "Two Bedroom",
+    "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
     "baseRate": 175.00
@@ -10,7 +10,7 @@
   {
     "cottageNumber": 2,
     "cottageName": "Karri",
-    "roomType": "Two Bedroom",
+    "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
     "baseRate": 195.00
@@ -18,7 +18,7 @@
   {
     "cottageNumber": 3,
     "cottageName": "Marri",
-    "roomType": "Two Bedroom",
+    "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
     "baseRate": 195.00
@@ -26,7 +26,7 @@
   {
     "cottageNumber": 4,
     "cottageName": "Jarrah",
-    "roomType": "Two Bedroom",
+    "numRooms": 2,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 6,
     "baseRate": 195.00
@@ -34,7 +34,7 @@
   {
     "cottageNumber": 5,
     "cottageName": "Settlers",
-    "roomType": "One Bedroom",
+    "numRooms": 1,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 2,
     "baseRate": 165.00
@@ -42,7 +42,7 @@
   {
     "cottageNumber": 6,
     "cottageName": "The Nest",
-    "roomType": "One Bedroom",
+    "numRooms": 1,
     "cottageDescription": "copy this from previous website soon",
     "maxGuests": 2,
     "baseRate": 205.00

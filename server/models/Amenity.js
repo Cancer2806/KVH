@@ -16,7 +16,7 @@ const amenitySchema = new Schema(
     },
     amenityType: {
       type: [String],
-      // the types of amenities will be limited to a specific list - determine whether to have a separate model or subdocument for these
+      enum: ["Fun", "Warmth", "Entertain","Pleasure"]
     },
   },
   {

@@ -20,13 +20,12 @@ const cottageSchema = new Schema(
       required: true,
       unique: true,
     },
-    roomType: {
-      type: String,
-      required: true,
-      // will be restricted to either one bedroom or two bedroom type
-    },
     cottageDescription: {
       type: String,
+      required: true,
+    },
+    numRooms: {
+      type: Number,
       required: true,
     },
     amenities: {
@@ -39,7 +38,8 @@ const cottageSchema = new Schema(
     },
     images: {
       type: [String],
-      // array of images or image addresses
+      // array of image addresses
+      // TODO functionality to upload fresh images and remove unwanted images
     },
     baseRate: {
       type: Number,

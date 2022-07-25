@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "Fred",
+    "lastName": "Flintstone",
+    "userEmail": "fred@flintstone.com",
+    "password": "123456",
+    "userType": "admin"
+  },
+  {
+    "firstName": "Betty",
+    "lastName": "Rubble",
+    "userEmail": "betty@flintstone.com",
+    "password": "123456",
+    "userType": "guest"
+  },
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "userEmail": "john@doe.com",
+    "password": "123456",
+    "userType": "guest"
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "userEmail": "jane@doe.com",
+    "password": "123456",
+    "userType": "guest"
+  }
+]
