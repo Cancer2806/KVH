@@ -38,7 +38,7 @@ const SignupForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
+
     // check if form has been correctly filled in
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -69,67 +69,77 @@ const SignupForm = () => {
 
   return (
     <>
-      <div className="container my-1">
-        <Link to="/login">← Go to Login</Link>
+      <div className="w-full max-w-md">
+        <form className="w-full max-w-lg" onSubmit={handleFormSubmit}>
+          <div className="">
+            <h2 className="text-center text-lg" >Signup</h2>
+            <br></br>
+            <p className="text-center text-lg">
+              <Link to="/login">← Go to Login</Link></p>
+            <br></br>
+          </div>
 
-        <h2>Signup</h2>
+          {/* TODO consider validation and alerts if something is wrong */}
 
-        <form onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your signup!
-        </Alert> */}
-          <div>
-            <label htmlFor="firstName">First Name:</label>
-            <input
-              type='text'
-              placeholder="Your first name"
-              name="firstName"
-              type="text"
-              id="firstName"
-              onChange={handleInputChange}
-              value={userFormData.firstName}
-              required
-            />
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="firstName">First Name:</label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type='text'
+                placeholder="Your first name"
+                name="firstName"
+                id="firstName"
+                onChange={handleInputChange}
+                value={userFormData.firstName}
+                required
+              />
+              <p class="text-red-500 text-xs italic">Please fill in all fields.</p>
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="lastName">Last Name:</label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type='text'
+                placeholder='Your last name'
+                name='lastName'
+                id="lastName"
+                onChange={handleInputChange}
+                value={userFormData.lastName}
+                required
+              />
+            </div>
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="lastName">Last Name:</label>
-            <input
-              type='text'
-              placeholder='Your last name'
-              name='lastName'
-              id="lastName"
-              onChange={handleInputChange}
-              value={userFormData.lastName}
-              required
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="email">Email:</label>
-            <input
-              type='email'
-              placeholder='Your email address'
-              name='email'
-              id="email"
-              onChange={handleInputChange}
-              value={userFormData.email}
-              required
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="pwd">Password:</label>
-            <input
-              type='password'
-              placeholder='Your password'
-              name='password'
-              id="pwd"
-              onChange={handleInputChange}
-              value={userFormData.password}
-              required
-            />
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type='email'
+                placeholder='Your email address'
+                name='email'
+                id="email"
+                onChange={handleInputChange}
+                value={userFormData.email}
+                required
+              />
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="pwd">Password:</label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                type='password'
+                placeholder='Your password'
+                name='password'
+                id="pwd"
+                onChange={handleInputChange}
+                value={userFormData.password}
+                required
+              />
+            </div>
           </div>
           <div className="flex-row flex-end">
-            <button type="submit">Submit</button>
+            <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
           </div>
         </form>
       </div>
