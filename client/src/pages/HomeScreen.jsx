@@ -14,7 +14,7 @@ const HomeScreen = () => {
 
   return (
     
-
+    cottages.sort(cottageNumber);
     cottages.map((cottage, index) => {
       return (
         <div className="container">
