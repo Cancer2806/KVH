@@ -77,10 +77,10 @@ const LoginForm = (props) => {
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='email'>Email Address:</label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder='Your email'
-              name='email'
-              type='text'
-              id='email'
+              placeholder="Your email"
+              name="email"
+              type="email"
+              id="email"
               onChange={handleInputChange}
               value={userFormData.email}
               required
@@ -91,9 +91,10 @@ const LoginForm = (props) => {
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='password'>Password</label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder='Your password'
-              name='password'
-              id='password'
+              placeholder="Your password"
+              name="password"
+              type="password"
+              id="password"
               onChange={handleInputChange}
               value={userFormData.password}
               required

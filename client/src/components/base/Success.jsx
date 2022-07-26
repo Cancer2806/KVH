@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-function success() {
+function Success({ message }) {
   return (
-    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-      <p class="font-bold">Success</p>
-      <p class="text-sm">Some additional text to explain said message.</p>
+    <div
+      className="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+      <p className="font-bold">{message}</p>
     </div>
   )
 }
 
-export default success
+export default Success;
