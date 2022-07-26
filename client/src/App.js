@@ -8,7 +8,9 @@ import { setContext } from '@apollo/client/link/context';
 import './App.css';
 import HomeScreen from './pages/HomeScreen';
 import Dropdown from '../src/components/base/dropdown'
-import Navbar from '../src/components/base/navbar'
+import Navbar from './components/navbar'
+import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 
 
 // Construct main GraphQL API endpoint
@@ -55,10 +57,14 @@ function App() {
               path='/'
               element={<HomeScreen />}
             />
-            {/* <Route
-              path='/saved'
-              element={<SavedBooks />}
-            /> */}
+            <Route
+              path='/login'
+              element={<LoginForm />}
+            />
+            <Route
+              path='/signup'
+              element={<SignupForm />}
+            />
             <Route
               path='*'
               element={<h1 className='display-2'>Wrong page!</h1>}

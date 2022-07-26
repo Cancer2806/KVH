@@ -3,6 +3,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -67,6 +68,18 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+              <ul className="flex-row">
+                <li className="mx-1 text-white">
+                  <Link to="./signup">
+                    Signup
+                  </Link>
+                </li>
+                <li className="mx-1 text-white">
+                  <Link to="./login">
+                    Login
+                  </Link>
+                </li>
+              </ul>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"

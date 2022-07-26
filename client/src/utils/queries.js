@@ -17,3 +17,23 @@ export const QUERY_ALL_COTTAGES = gql`
   }
 }
 `;
+
+export const QUERY_PROPERTY = gql`
+  query viewProperty {
+    viewProperty {
+      _id
+      propertyName
+      propertyLogo
+      propertyDescription
+      streetAddress
+      postalAddress
+      phoneNumber
+      mobileNumber
+      ABN
+      ACN
+      propertyEmail
+      webAddress
+      contact
+    }
+  }
+  `

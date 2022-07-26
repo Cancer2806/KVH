@@ -10,13 +10,11 @@ const HomeScreen = () => {
 
   const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
   const cottages = data?.viewCottages || [];
-  console.log(cottages);
-
   const [cottage, setCottage] = useState(cottages)
 
   return (
-    // map  func with data would have card component inside
-    //  data.map
+    
+
     cottages.map((cottage, index) => {
       return (
         <div className="container">
@@ -28,7 +26,7 @@ const HomeScreen = () => {
             max={cottage.maxGuests}
             text={cottage.cottageDescription}
           />
-          </div>
+        </div>
       )
     })
   );
