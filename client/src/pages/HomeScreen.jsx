@@ -11,10 +11,11 @@ const HomeScreen = () => {
   const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
   const cottages = data?.viewCottages || [];
   const [cottage, setCottage] = useState(cottages)
+  cottages.sort(cottageNumber)
 
   return (
     
-    cottages.sort(cottageNumber);
+    
     cottages.map((cottage, index) => {
       return (
         <div className="container">
