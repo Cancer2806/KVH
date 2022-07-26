@@ -7,8 +7,8 @@ import { setContext } from '@apollo/client/link/context';
 // import required components/pages
 import './App.css';
 import HomeScreen from './pages/HomeScreen';
-import Dropdown from '../src/components/base/dropdown'
-import Navbar from './components/navbar'
+import Dropdown from './components/base/Dropdown'
+import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 

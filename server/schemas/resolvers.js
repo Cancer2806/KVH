@@ -74,6 +74,7 @@ const resolvers = {
       return { token, user };
     },
 
+    // resolver for updating Cottage details - admin only
     updateCottage: async (parent, { _id, cottageName }) => {
 
       try {

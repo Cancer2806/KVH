@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { QUERY_ALL_COTTAGES } from '../utils/queries';
-import Card from '../components/base/card'
+import Card from '../components/base/Card'
 
 
 const HomeScreen = () => {
