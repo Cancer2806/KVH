@@ -49,6 +49,17 @@ const typeDefs = gql`
     # bookings: [Booking]
   }
 
+  type Booking {
+    _id: ID!
+    checkIn: String!
+    checkOut: String!
+    numAdults: Int
+    numChildren: Int
+    # guest: User
+    # cottage: Cottage
+    amount: Float
+  }
+
   type Auth {
     token: String!
     user: User!
@@ -60,6 +71,7 @@ const typeDefs = gql`
     viewAmenities: [Amenity]
     viewProperty: [Property]
     viewUsers: [User]
+    viewBookings: [Booking]
   }
 
 type Mutation {
@@ -74,6 +86,16 @@ type Mutation {
     userEmail: String!,
     password: String!
   ): Auth
+
+  addBooking(
+    checkIn: String!
+    checkOut: String!
+    numAdults: Int
+    numChildren: Int
+    # guest: User
+    # cottage: Cottage
+    amount: Float
+  ): Booking
   
   updateCottage(
     cottageName: String!

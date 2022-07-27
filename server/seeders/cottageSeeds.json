@@ -3,7 +3,7 @@
     "cottageNumber": 1,
     "cottageName": "Peppermint",
     "numRooms": 2,
-    "cottageDescription": "Two bedroom (King Bed in Master and Two King Single Beds in the second room). Also has a sofa couch.",
+    "cottageDescription": "Two bedroom (King Bed in Master and Two King Single Beds in the second room).",
     "maxGuests": 6,
     "baseRate": 175.00,
     "images": "/assets/images/Pepper.jpg"
@@ -41,7 +41,7 @@
     "numRooms": 1,
     "cottageDescription": "Our cosy one bedroom unit with Queen bed for the budget conscious traveller.",
     "maxGuests": 2,
-    "baseRate": 165.00,
+    "baseRate": 160.00,
     "images": "/assets/images/Settlers.jpg"
   },
   {

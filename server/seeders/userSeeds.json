@@ -26,5 +26,12 @@
     "userEmail": "jane@doe.com",
     "password": "123456",
     "userType": "guest"
+  },
+  {
+    "firstName": "Super",
+    "lastName": "User",
+    "userEmail": "super@user.com",
+    "password": "123456",
+    "userType": "admin"
   }
 ]

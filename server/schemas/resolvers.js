@@ -4,6 +4,7 @@ const Cottage = require('../models/Cottage');
 const Amenity = require('../models/Amenity');
 const User = require('../models/User');
 const Property = require('../models/Property');
+const Booking = require('../models/Booking');
 
 const { signToken } = require('../utils/auth');
 
@@ -36,6 +37,10 @@ const resolvers = {
       return await Property.find({})
     },
 
+    viewBookings: async () => {
+      return await Booking.find({})
+    },
+
     me: async (parent, args, context) => {
       const user = checkLoggedIn(context);
 
@@ -66,13 +71,22 @@ const resolvers = {
     },
 
     // resolver for adding a new User profile
-    addUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    addUser: async (parent, { firstName, lastName, userEmail, password }) => {
+      const user = await User.create({
+        firstName, lastName, userEmail, password
+      });
 
       const token = signToken(user);
 
       return { token, user };
     },
+
+    // resolver for adding a new Booking
+    addBooking: async (parent, { checkIn, checkOut, numAdults, numChildren, amount }) => {
+      const booking = await Booking.create({ checkIn, checkOut, numAdults, numChildren, amount });
+      return { booking }
+    },
+      
 
     // resolver for updating Cottage details - admin only
     updateCottage: async (parent, { _id, cottageName }) => {

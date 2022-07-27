@@ -10,38 +10,29 @@ const cottageSchema = require('./Cottage');
 
 const bookingSchema = new Schema(
   {
-    dateIn: {
-      type: Date,
+    checkIn: {
+      type: String,
       required: true,
     },
-    dateOut: {
-      type: Date,
+    checkOut: {
+      type: String,
       required: true,
     },
-    guestName: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      // required: true,
-      },
-    ],
-    cottageName: {
-      type: Schema.Types.ObjectId,
-      ref: 'Cottage',
-      // required: true,
-    },
-    dateBooked: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
+    // guest: 
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'User',
+    //   // required: true,
+    //   },
+    // cottage: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Cottage',
+    //   // required: true,
+    // },
     dateConfirmed: {
       type: Date,
     },
-    deposit: {
-      type: Number,
-    },
-    balance: {
+    amount: {
       type: Number,
     },
     numAdults: {
@@ -55,7 +46,8 @@ const bookingSchema = new Schema(
     },
     payment: {
       type: String,
-      // TO figure out how to gather and store card details securely
+      // TODO figure out how to gather and store card details securely
+      // or don't store, just email out as done now
     },
     confirmation: {
       type: String,
