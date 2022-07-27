@@ -9,10 +9,11 @@ const typeDefs = gql`
     cottageNumber: Int!
     cottageName: String!
     numRooms: Int!
-    cottageDescription: String
+    cottageDescription: String!
     amenities: [Amenity]
     maxGuests: Int!
     images: [String]
+    baseRate: Float!
     # bookings: [Booking]
   }
 
@@ -37,6 +38,7 @@ const typeDefs = gql`
     propertyEmail: String
     webAddress: String
     contact: String
+    images: [String]
   }
 
   type User {
@@ -55,6 +57,7 @@ const typeDefs = gql`
     checkOut: String!
     numAdults: Int
     numChildren: Int
+    numPets: Int
     # guest: User
     # cottage: Cottage
     amount: Float
@@ -76,7 +79,7 @@ const typeDefs = gql`
 
 type Mutation {
   login(
-    email: String!,
+    userEmail: String!,
     password: String!
   ): Auth
 
@@ -101,9 +104,9 @@ type Mutation {
     cottageName: String!
     numRooms: Int!
     cottageDescription: String
-    # amenities: [Amenity]
+    # amenities: Amenity
     maxGuests: Int!
-    # images: [String]
+    images: [String]
     # bookings: [Booking]
   ): Cottage
 }

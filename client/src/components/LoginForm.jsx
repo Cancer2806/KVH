@@ -1,7 +1,6 @@
 // define component for the login form
 // import the required dependencies
 import React, { useState } from 'react';
-// import { Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 // Import and use mutations
@@ -12,7 +11,7 @@ import AuthService from '../utils/auth';
 
 // define and set state for User login form
 const LoginForm = (props) => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ userEmail: '', password: '' });
 
   // call the LOGIN_USER mutation
   const [login, { error, data }] = useMutation(LOGIN_USER);
@@ -53,7 +52,7 @@ const LoginForm = (props) => {
 
     // reset the login form
     setUserFormData({
-      email: '',
+      userEmail: '',
       password: '',
     });
   };
@@ -74,15 +73,15 @@ const LoginForm = (props) => {
 
           {/* <div className="flex flex-wrap -mx-3 mb-6"> */}
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='email'>Email Address:</label>
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor='userEmail'>Email Address:</label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder="Your email"
-              name="email"
+              placeholder="Enter your email"
+              name="userEmail"
               type="email"
-              id="email"
+              id="userEmail"
               onChange={handleInputChange}
-              value={userFormData.email}
+              value={userFormData.userEmail}
               required
             />
             {/* </div> */}

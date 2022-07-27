@@ -1,3 +1,4 @@
+// Define front end queries matching backend resolvers
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_COTTAGES = gql`
@@ -13,7 +14,8 @@ export const QUERY_ALL_COTTAGES = gql`
         amenityName
         amenityDescription
       }
-      maxGuests 
+      maxGuests
+      baseRate 
   }
 }
 `;
@@ -34,6 +36,19 @@ export const QUERY_PROPERTY = gql`
       propertyEmail
       webAddress
       contact
+      images
+    }
+  }
+  `;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      firstName
+      lastName
+      userEmail
+      userType
     }
   }
   `

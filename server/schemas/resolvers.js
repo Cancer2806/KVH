@@ -54,8 +54,8 @@ const resolvers = {
 
   Mutation: {
     // resolver for logging in a User
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email: email });
+    login: async (parent, { userEmail, password }) => {
+      const user = await User.findOne({ userEmail: userEmail });
       if (!user) {
         throw new Error(`Login failure`);
       }
@@ -96,7 +96,7 @@ const resolvers = {
           { cottageName: foundCottage.cottageName },
         );
         if (!foundCottage) {
-          throw new Error(`Could not find user with this id`);
+          throw new Error(`Could not find cottage with this name`);
         }
         return foundCottage;
       } catch { error } {

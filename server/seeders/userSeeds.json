@@ -4,7 +4,7 @@
     "lastName": "Flintstone",
     "userEmail": "fred@flintstone.com",
     "password": "123456",
-    "userType": "admin"
+    "userType": "guest"
   },
   {
     "firstName": "Betty",

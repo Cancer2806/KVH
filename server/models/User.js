@@ -38,7 +38,7 @@ const userSchema = new Schema(
     userType: {
       type: String,
       enum: ["visitor", "guest", "admin"],
-      default: "visitor"
+      default: "guest"
     },
   },
   // set this to use virtual below

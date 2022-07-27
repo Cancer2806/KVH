@@ -3,8 +3,6 @@
 // Use Mongoose as the ODM
 const { Schema, model } = require('mongoose');
 
-// TODO either here or in separate file - passwords and hashing with bcrypt
-
 // const bookingsSchema = require('./Bookings');
 const Amenity = require('./Amenity');
 

@@ -5,13 +5,21 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom';
 
+// Required to determine if a user has signed in
+import AuthService from '../utils/auth';
+
+// Required if modal signin functionality implemented
+import SignUpForm from './SignupForm';
+import LoginForm from './LoginForm';
+
+
 const navigation = [
   { name: 'Home', href: '/', current: true },
   { name: 'Our Cottages', href: '#', current: false },
-  { name: 'Bookings', href: '#', current: false },
   { name: 'Attractions', href: '#', current: false },
   { name: 'Location', href: '#', current: false },
   { name: 'Contact Us', href: '#', current: false },
+  { name: 'FAQ', href: '#', current: false },
 ]
 
 function classNames(...classes) {
@@ -19,6 +27,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -39,15 +48,15 @@ export default function Navbar() {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
                   <a href="/">
-                  <img
-                    className="block lg:hidden h-8 w-auto bg-white"
-                    src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
-                    alt="Workflow"
+                    <img
+                      className="block lg:hidden h-8 w-auto bg-white"
+                      src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
+                      alt="Workflow"
                     />
-                  <img
-                    className="hidden lg:block h-8 w-auto bg-white"
-                    src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
-                    alt="Workflow"
+                    <img
+                      className="hidden lg:block h-8 w-auto bg-white"
+                      src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
+                      alt="Workflow"
                     /></a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -68,18 +77,24 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+
+              {/* If user is logged in, show the logout */}
               <ul className="flex-row">
-                <li className="mx-1 text-white">
-                  <Link to="./signup">
-                    Signup
-                  </Link>
-                </li>
-                <li className="mx-1 text-white">
-                  <Link to="./login">
-                    Login
-                  </Link>
-                </li>
+                {AuthService.loggedIn() ? (
+                  <>
+                    <button className="text-white" onClick={AuthService.logout}>Logout</button>
+                  </>
+                ) : (
+                  <li className="mx-1 text-white">
+                    {/* TODO investigate doing in Modal with Tailwind */}
+                    <Link to="./login">
+                      Login / Register
+                    </Link>
+                  </li>
+                )}
               </ul>
+
+              {/* TODO Decide whether to keep or modify following bell and profile items */}
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"

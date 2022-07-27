@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // TODO change to Tailwind
-// import { Form, Button, Alert } from 'react-bootstrap';
 
 // import mutations
 import { useMutation } from '@apollo/client';
@@ -16,7 +15,7 @@ const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
+    userEmail: '',
     password: '',
   });
 
@@ -62,7 +61,7 @@ const SignupForm = () => {
     setUserFormData({
       firstName: '',
       lastName: '',
-      email: '',
+      userEmail: '',
       password: '',
     });
   };
@@ -112,15 +111,15 @@ const SignupForm = () => {
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="userEmail">Email:</label>
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 type='email'
                 placeholder='Your email address'
-                name='email'
-                id="email"
+                name='userEmail'
+                id="userEmail"
                 onChange={handleInputChange}
-                value={userFormData.email}
+                value={userFormData.userEmail}
                 required
               />
             </div>
@@ -131,7 +130,7 @@ const SignupForm = () => {
                 type='password'
                 placeholder='Your password'
                 name='password'
-                id="pwd"
+                id="password"
                 onChange={handleInputChange}
                 value={userFormData.password}
                 required

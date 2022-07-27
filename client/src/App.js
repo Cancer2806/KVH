@@ -3,16 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import './App.css';
 
 // import required components/pages
-import './App.css';
 import HomePage from './pages/HomePage';
 import BookingPage from './pages/BookingPage';
-import Dropdown from './components/base/Dropdown'
 import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-
 
 
 // Construct main GraphQL API endpoint
@@ -34,7 +32,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // Set up our client to execute the authentication middleware prior to making the request to our GraphQL API
+  // Set client to execute the authentication middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -44,24 +42,16 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-        <div className="App">
-      <h1 className="flex flex-row bg-red-500 border-2 border-green-500">
-        Cottages are Great - Time to Stay In One
-      </h1>
-      <Navbar />
-      <br></br>
-      {/* <Dropdown /> */}
-
-      
+          <Navbar />
+          <div className="App">
+            <h1 className="flex flex-row bg-red-500 border-2 border-green-500">
+              Cottages are Great - Time to Stay In One
+            </h1>
           </div>
           <Routes>
             <Route
               path='/'
               element={<HomePage />}
-            />
-            <Route
-              path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
-              element={<BookingPage />}
             />
             <Route
               path='/login'
@@ -71,9 +61,14 @@ function App() {
               path='/signup'
               element={<SignupForm />}
             />
+            {/* Route from Reservation component */}
+            <Route
+              path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
+              element={<BookingPage />}
+            />
             <Route
               path='*'
-              element={<h1 className='display-2'>Wrong page!</h1>}
+              element={<h1 className='display-2'>No Matching Route!</h1>}
             />
           </Routes>
         </>
