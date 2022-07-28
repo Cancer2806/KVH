@@ -5,7 +5,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom';
 
-// Required to determine if a user has signed in
+// Required to determine if a user has signed in and if they are admin level
+import { useQuery, useMutation } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
 import AuthService from '../utils/auth';
 
 // Required if modal signin functionality implemented
@@ -27,6 +29,11 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { loading, error, data } = useQuery(QUERY_ME);
+  let userData = data?.me || {};
+  if (userData) {
+    console.log(userData.userType)
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -80,18 +87,28 @@ export default function Navbar() {
 
               {/* If user is logged in, show the logout */}
               <ul className="flex-row">
-                {AuthService.loggedIn() ? (
+                {AuthService.loggedIn() && userData.userType == 'admin' ? (
                   <>
-                    <button className="text-white" onClick={AuthService.logout}>Logout</button>
+                    {/* Admin button goes to admin pages */}
+                    <button className="text-white"
+                      onClick={AuthService.logout}>Admin</button>
+                    <button className="text-white ml-5" onClick={AuthService.logout}>Logout</button>
                   </>
                 ) : (
-                  <li className="mx-1 text-white">
-                    {/* TODO investigate doing in Modal with Tailwind */}
-                    <Link to="./login">
-                      Login / Register
-                    </Link>
-                  </li>
+                  AuthService.loggedIn() ? (
+                    <>
+                      <button className="text-white" onClick={AuthService.logout}>Logout</button>
+                    </>
+                  ) : (
+                    <li className="mx-1 text-white">
+                      {/* TODO investigate doing in Modal with Tailwind */}
+                      <Link to="./login">
+                        Login / Register
+                      </Link>
+                    </li>
+                  )
                 )}
+              
               </ul>
 
               {/* TODO Decide whether to keep or modify following bell and profile items */}

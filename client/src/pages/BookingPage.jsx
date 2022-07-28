@@ -46,8 +46,10 @@ const BookingPage = () => {
     //   return false;
     // }
     try {
-      console.log(`checks: ${checkinDate}`)
-      console.log(`moment, ${checkoutDate}`)
+      console.log(`checkin passed: ${checkin}`)
+      console.log(`checkout passed: ${checkout}`)
+      console.log(`checkindate: ${checkinDate}`)
+      console.log(`checkoutdate, ${checkoutDate}`)
       console.log(`numAdults ${numAdults}`)
      
       console.log(`numChildren is ${numChildren}`)

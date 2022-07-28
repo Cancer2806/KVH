@@ -7,10 +7,10 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 
-// A guest can book without registering so may not have a password
+// A guest must register before completing a booking
 // An administrator must have a password...
 
-// TODO link to Bookings or use Booking as a sub-document
+// TODO Figure out how best to link to Bookings
 
 const userSchema = new Schema(
   {
@@ -37,7 +37,7 @@ const userSchema = new Schema(
     },
     userType: {
       type: String,
-      enum: ["visitor", "guest", "admin"],
+      enum: ["guest", "admin"],
       default: "guest"
     },
   },

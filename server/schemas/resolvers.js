@@ -64,7 +64,7 @@ const resolvers = {
       if (!correctPw) {
         throw new Error(`Login failure`);
       }
-      // Use same failure message to reduce chances for bad player
+      // Use same failure message to reduce chances for bad players
       const token = signToken(user);
 
       return { token, user };
@@ -84,7 +84,7 @@ const resolvers = {
     // resolver for adding a new Booking
     addBooking: async (parent, { checkIn, checkOut, numAdults, numChildren, amount }) => {
       const booking = await Booking.create({ checkIn, checkOut, numAdults, numChildren, amount });
-      return { booking }
+      return { booking };
     },
       
 
