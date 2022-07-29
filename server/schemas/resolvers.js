@@ -82,8 +82,8 @@ const resolvers = {
     },
 
     // resolver for adding a new Booking
-    addBooking: async (parent, { checkIn, checkOut, numAdults, numChildren, amount }) => {
-      const booking = await Booking.create({ checkIn, checkOut, numAdults, numChildren, amount });
+    addBooking: async (parent, { checkin, checkout, numAdults, numChildren, amount }) => {
+      const booking = await Booking.create({ checkin, checkout, numAdults, numChildren, amount });
       return { booking };
     },
       

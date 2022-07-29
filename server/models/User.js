@@ -1,16 +1,11 @@
 // Model for maintaining guest and admin details.  
 
-// TODO  Add type of User (Visitor, Guest, Admin)
-
 // Use Mongoose as the ODM
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
 // A guest must register before completing a booking
-// An administrator must have a password...
-
-// TODO Figure out how best to link to Bookings
+const Booking = require('./Booking');
 
 const userSchema = new Schema(
   {
@@ -40,9 +35,14 @@ const userSchema = new Schema(
       enum: ["guest", "admin"],
       default: "guest"
     },
+    bookings: {
+      type: Schema.Types.ObjectId,
+      ref: 'Booking',
+    },
   },
   // set this to use virtual below
   {
+    timestamps: true,
     toJSON: {
       virtuals: true,
     },
@@ -63,10 +63,10 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// TODO record previous stays and details - perhaps through link to Bookings
-// userSchema.virtual('numStays').get(function () {
-  // return this.Bookings.length;
-// });
+// Record number of previous stays - perhaps through link to Bookings
+userSchema.virtual('numStays').get(function () {
+  return this.bookings.length;
+});
 
 const User = model('User', userSchema);
 

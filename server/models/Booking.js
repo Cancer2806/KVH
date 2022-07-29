@@ -1,38 +1,25 @@
-// Model will hold all bookings, linked to cottages and guests
-
-// It may be better to make this a sub-document of guests
+// Model will hold all bookings, linked by cottages and guests
 
 // Use Mongoose as the ODM
 const { Schema, model } = require('mongoose');
 
-const userSchema = require('./User');
-const cottageSchema = require('./Cottage');
-
 const bookingSchema = new Schema(
   {
-    checkIn: {
+    checkin: {
       type: String,
       required: true,
     },
-    checkOut: {
+    checkout: {
       type: String,
       required: true,
     },
-    // guest: 
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    //   // required: true,
-    //   },
-    // cottage: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Cottage',
-    //   // required: true,
-    // },
     dateConfirmed: {
-      type: Date,
+      type: String,
     },
     amount: {
+      type: Number,
+    },
+    amountPaid: {
       type: Number,
     },
     numAdults: {
@@ -44,10 +31,20 @@ const bookingSchema = new Schema(
     numPets: {
       type: Number,
     },
-    payment: {
+    paymentMethod: {
       type: String,
-      // TODO figure out how to gather and store card details securely
-      // or don't store, just email out as done now
+      // TODO figure out how to collect card details and email securely
+    },
+    status: {
+      type: String,
+      enum: ["Requested", "Confirmed", "Cancelled"],
+      default: "Requested",
+    },
+    guestEmail: {
+      type: String,
+    },
+    cottageName: {
+      type: String,
     },
     confirmation: {
       type: String,

@@ -9,9 +9,16 @@ import ReservationForm from '../components/base/ReservationForm';
 const HomePage = () => {
   const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
   const cottages = data?.viewCottages || [];
+
   const [cottage, setCottage] = useState(cottages)
   // cottages.sort(cottages.cottageNumber);
+  // const numbers = cottages.map(({cottageNumber, cottageName, images, numRooms, cottageDescription, amenities, maxGuests, baseRate}) => {
+  // // const newArr = [...cotageN]
+  // })
 
+  // const sorted = [...numbers].sort((a, b) => a - b)
+  // console.log('sorted', sorted)
+  
   return (
     <>
       {/* Property Details to go below Navbar before cottages */}
@@ -22,6 +29,7 @@ const HomePage = () => {
       {cottages.map((cottage, index) => {
         return (
           <div className="container">
+          
             <Card key={cottage.cottageNumber}
               img={cottage.images[0]}
               number={cottage.cottageNumber}

@@ -2,14 +2,14 @@
 
 const Cottage = require('./Cottage');
 const Amenity = require('./Amenity');
-// const Booking = require('./Bookings');
+const Booking = require('./Booking');
 const User = require('./User');
 const Property = require('./Property');
 
 module.exports = {
   Cottage,
   Amenity,
-  // Booking,
+  Booking,
   User,
   Property
 };

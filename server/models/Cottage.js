@@ -3,8 +3,8 @@
 // Use Mongoose as the ODM
 const { Schema, model } = require('mongoose');
 
-// const bookingsSchema = require('./Bookings');
 const Amenity = require('./Amenity');
+const Booking = require('./Booking');
 
 const cottageSchema = new Schema(
   {
@@ -43,9 +43,10 @@ const cottageSchema = new Schema(
       type: Number,
       required: true,
     },
-    // bookings: {
-    //   type: [Booking.Schema],
-    // },
+    bookings: {
+      type: Schema.Types.ObjectId,
+      ref: 'Booking',
+    },
   },
   {
     timeStamps: true,

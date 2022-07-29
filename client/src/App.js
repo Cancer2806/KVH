@@ -1,6 +1,6 @@
 // Define app entry point, context and authentication middleware
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import './App.css';
@@ -44,8 +44,8 @@ function App() {
         <>
           <Navbar />
           <div className="App">
-            <h1 className="flex flex-row bg-red-500 border-2 border-green-500">
-              Cottages are Great - Time to Stay In One
+            <h1 className="flex flex-row bg-green-500 border-2 border-red-500 justify-center">
+              Cottages are great and Karri Valley is fabulous. &nbsp; Why not visit and stay with us?
             </h1>
           </div>
           <Routes>
@@ -61,11 +61,14 @@ function App() {
               path='/signup'
               element={<SignupForm />}
             />
+
             {/* Route from Reservation component */}
             <Route
-              path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
+              // path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
+              path='/booking'
               element={<BookingPage />}
             />
+
             <Route
               path='*'
               element={<h1 className='display-2'>No Matching Route!</h1>}

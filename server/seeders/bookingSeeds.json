@@ -1,0 +1,40 @@
+[
+  {
+    "checkin": "12-08-2022",
+    "checkout": "15-08-2022",
+    "numAdults": 2,
+    "numChildren": 2,
+    "status": "Requested",
+    "guestEmail": "fred@flintstone.com",
+    "cottageName": "Peppermint"
+  },
+  {
+    "checkin": "17-08-2022",
+    "checkout": "22-08-2022",
+    "numAdults": 2,
+    "numChildren": 2,
+    "status": "Confirmed",
+    "dateConfirmed": "31-07-2022",
+    "amountPaid": 275,
+    "guestEmail": "fred@flintstone.com",
+    "cottageName": "Karri"
+  },
+  {
+    "checkin": "18-08-2022",
+    "checkout": "31-08-2022",
+    "numAdults": 2,
+    "numChildren": 2,
+    "status": "Requested",
+    "guestEmail": "jane@doe.com",
+    "cottageName": "Karri"
+  },
+  {
+    "checkin": "22-08-2022",
+    "checkout": "30-08-2022",
+    "numAdults": 2,
+    "numChildren": 2,
+    "status": "Requested",
+    "guestEmail": "super@user.com",
+    "cottageName": "The Nest"
+  }
+]

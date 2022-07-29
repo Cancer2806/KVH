@@ -32,7 +32,7 @@ export default function Navbar() {
   const { loading, error, data } = useQuery(QUERY_ME);
   let userData = data?.me || {};
   if (userData) {
-    console.log(userData.userType)
+    // console.log(userData.userType)
   }
 
   return (

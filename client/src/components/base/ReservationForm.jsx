@@ -14,21 +14,23 @@ import BookingPage from '../../pages/BookingPage';
 const { RangePicker } = DatePicker;
 
 // define and set state for User login form
-const ReservationForm = (props) => {
+const ReservationForm = () => {
 
-  const [checkin, setCheckin] = useState();
-  const [checkout, setCheckout] = useState();
-  let navigate = useNavigate();
-
+  const [checkin, setCheckin] = useState('');
+  const [checkout, setCheckout] = useState('');
   const [reservationData, setReservationData] = useState({ numAdults: 0, numChildren: 0 });
-
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
+  let navigate = useNavigate();
 
   function filterByDate(dates) {
     setCheckin(moment(dates[0]))
     setCheckout(moment(dates[1]))
   }
+  // console.log('checkin', checkin._d, checkout._d)
+  let checkinStr = moment(checkin).format('DD-MM-YYYY')
+  let checkoutStr = moment(checkout).format('DD-MM-YYYY')
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -53,17 +55,14 @@ const ReservationForm = (props) => {
       const numDays = moment.duration(checkout.diff(checkin)).asDays();
 
       if (checkin && checkout && reservationData.numAdults > 0) {
-        console.log(`total days ${numDays}`);
-        console.log(`reservation data ${reservationData.numAdults}, ${reservationData.numChildren}`);
+        // navigate('/booking', { state: { checkin: checkin._d.toString(), checkout: checkout._d.toString(), numA: reservationData.numAdults, numC: reservationData.numChildren, numDays: numDays }})
+        navigate('/booking', { state: { checkin: checkinStr, checkout: checkoutStr, numAdults: reservationData.numAdults, numChildren: reservationData.numChildren, numDays: numDays } })
 
-        return (
-          navigate(`/booking/${checkin}/${checkout}/${reservationData.numAdults}/${reservationData.numChildren}/${numDays}`, { replace: true })
-        )
       }
     } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+  console.error(err);
+  setShowAlert(true);
+}
 
     // reset the form
     // setReservationData({
@@ -72,64 +71,67 @@ const ReservationForm = (props) => {
     // });
   };
 
-  return (
-    <>
-      <div className="w-full max-w-md">
-        <form className="bg-emerald-800 text-white shadow-md rounded-xl px-8 pt-6 pb-8 ml-5 mb-4 w-full max-w-lg" onSubmit={handleFormSubmit}>
-          <h2 className="text-white">Make a Reservation</h2>
-          <div className="row-auto text-white">
-            <div className=" text-center col-span-3 mt-5 mb-5">
-              <hr></hr>
-              <h2 className="text-white">Select your Checkin and Checkout days</h2>
-              <RangePicker format='ddd, DD-MMM-YYYY' onChange={filterByDate} />
+return (
+  <>
+    <div className="w-full max-w-md">
+      <form className="bg-emerald-800 text-white shadow-md rounded-xl px-8 pt-6 pb-8 ml-5 mb-4 w-full max-w-lg" onSubmit={handleFormSubmit}>
+        <h2 className="text-white">Make a Reservation</h2>
+        {/* <Link to="/booking" state={{ checkin }}>
+          Go to About Page (Link #1)
+        </Link> */}
+        <div className="row-auto text-white">
+          <div className=" text-center col-span-3 mt-5 mb-5">
+            <hr></hr>
+            <h2 className="text-white">Select your checkin and Checkout days</h2>
+            <RangePicker format='ddd, DD-MMM-YYYY' onChange={filterByDate} />
 
-              <hr></hr>
-            </div>
+            <hr></hr>
           </div>
-          
-          {/* TODO consider validation and alerts if something is wrong */}
+        </div>
 
-          {/* <div className="flex flex-wrap -mx-3 mb-6"> */}
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-white">
-            <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='numAdults'>Adults</label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder="2"
-              name="numAdults"
-              type="number"
-              id="adults"
-              onChange={handleInputChange}
-              value={reservationData.numAdults}
-              required
-            />
-            {/* </div> */}
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='numChildren'>Children</label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              placeholder="0"
-              name="numChildren"
-              type="number"
-              id="children"
-              onChange={handleInputChange}
-              value={reservationData.numChildren}
+        {/* TODO consider validation and alerts if something is wrong */}
 
-            />
-          </div>
-          {/* {error ? (
+        {/* <div className="flex flex-wrap -mx-3 mb-6"> */}
+        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-white">
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='numAdults'>Adults</label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="2"
+            name="numAdults"
+            type="number"
+            id="adults"
+            onChange={handleInputChange}
+            value={reservationData.numAdults}
+            required
+          />
+          {/* </div> */}
+        </div>
+        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='numChildren'>Children</label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            placeholder="0"
+            name="numChildren"
+            type="number"
+            id="children"
+            onChange={handleInputChange}
+            value={reservationData.numChildren}
+
+          />
+        </div>
+        {/* {error ? (
             <div>
               <p className="error-text">Please check the details entered</p>
             </div>
           ) : null} */}
-          <div className="flex-row flex-end">
-            {/* Button to open Bookings Screen */}
-            <button className="ml-10 mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type="submit">Book</button>
-          </div>
-        </form>
-      </div>
-    </>
-  );
+        <div className="flex-row flex-end">
+          {/* Button to open Bookings Screen */}
+          <button className="ml-10 mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type="submit">Book</button>
+        </div>
+      </form>
+    </div>
+  </>
+);
 };
 
 export default ReservationForm;

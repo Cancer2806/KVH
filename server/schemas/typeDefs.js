@@ -14,7 +14,7 @@ const typeDefs = gql`
     maxGuests: Int!
     images: [String]
     baseRate: Float!
-    # bookings: [Booking]
+    bookings: [Booking]
   }
 
   type Amenity {
@@ -48,18 +48,18 @@ const typeDefs = gql`
     userEmail: String!
     userType: String
     # numStays: Int
-    # bookings: [Booking]
+    bookings: [Booking]
   }
 
   type Booking {
     _id: ID!
-    checkIn: String!
-    checkOut: String!
+    checkin: String!
+    checkout: String!
     numAdults: Int
     numChildren: Int
     numPets: Int
-    # guest: User
-    # cottage: Cottage
+    guestEmail: String
+    cottageName: String
     amount: Float
   }
 
@@ -91,12 +91,12 @@ type Mutation {
   ): Auth
 
   addBooking(
-    checkIn: String!
-    checkOut: String!
+    checkin: String!
+    checkout: String!
     numAdults: Int
     numChildren: Int
-    # guest: User
-    # cottage: Cottage
+    guestEmail: String
+    cottageName: String
     amount: Float
   ): Booking
   
@@ -104,10 +104,10 @@ type Mutation {
     cottageName: String!
     numRooms: Int!
     cottageDescription: String
-    # amenities: Amenity
+    amenities: [Amenity]
     maxGuests: Int!
     images: [String]
-    # bookings: [Booking]
+    bookings: [Booking]
   ): Cottage
 }
 `;
