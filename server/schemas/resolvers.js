@@ -87,8 +87,7 @@ const resolvers = {
       
       if (context.user) {
         const guestEmail = user.userEmail
-        console.log(`guestEmail: ${user.userEmail}`)
-        console.dir(user)
+       
         const booking = await Booking.create({ checkin, checkout, numAdults, numChildren, guestEmail, cottageName, amount });
 
         const updatedUser = await User.findOneAndUpdate(

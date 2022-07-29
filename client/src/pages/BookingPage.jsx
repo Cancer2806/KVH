@@ -57,7 +57,6 @@ const BookingPage = () => {
 
     for (const duplicateCottage of duplicateCottages) {
       let availability = false;
-      console.log(`how long ${duplicateCottage.cottageName}, ${duplicateCottage.bookings.length}`)
       if (duplicateCottage.bookings.length > 0) {
         for (const booking of duplicateCottage.bookings) {
 
@@ -75,12 +74,12 @@ const BookingPage = () => {
 
           if (!rin && !rout && requestin !== bookin && !(requestin<bookin && requestout>bookout) && requestout !==bookout ) {
             availability = true;
-          } console.log(`quicktest ${availability}`)
+          }
         } 
       }
       if (availability === true || duplicateCottage.bookings.length === 0) {
         tempCottages.push(duplicateCottage);
-        console.log(`tempCottages`, '%o', tempCottages)
+        // console.log(`tempCottages`, '%o', tempCottages)
       }
     }
 
@@ -88,7 +87,6 @@ const BookingPage = () => {
   }, []);
 
   async function cottageSelect(cottId, cottName, cottrate) {
-    console.log(`this is the cottage selected ${cottId} with number ${cottName}`)
     setAmount(numDays * cottrate)
 
     // if logged in - get User details
@@ -111,7 +109,7 @@ const BookingPage = () => {
           numChildren: numChildren,
           // guestEmail: 'fred@flintstone.com',
           cottageName: cottName,
-          amount: amount
+          amount: numDays*cottrate
         },
       });
 

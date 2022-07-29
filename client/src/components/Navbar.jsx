@@ -90,20 +90,20 @@ export default function Navbar() {
                 {AuthService.loggedIn() && userData.userType == 'admin' ? (
                   <>
                     {/* Admin button goes to admin pages */}
-                    <button className="text-white"
-                      onClick={AuthService.logout}>Admin</button>
+                    <Link to="/admin" className="text-white">Admin</Link>
                     <button className="text-white ml-5" onClick={AuthService.logout}>Logout</button>
                   </>
                 ) : (
                   AuthService.loggedIn() ? (
                     <>
-                      <button className="text-white" onClick={AuthService.logout}>Logout</button>
+                      {/* User button goes to user pages */}
+                      <Link to="/user" className="text-white">User</Link>
+                      <button className="text-white ml-5" onClick={AuthService.logout}>Logout</button>
                     </>
                   ) : (
                     <li className="mx-1 text-white">
                       {/* TODO investigate doing in Modal with Tailwind */}
-                      <Link to="./login">
-                        Login / Register
+                      <Link to="/login">Login / Register
                       </Link>
                     </li>
                   )

@@ -11,6 +11,8 @@ import BookingPage from './pages/BookingPage';
 import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import UserPage from './pages/UserPage';
+import AdminPage from './pages/AdminPage';
 
 
 // Construct main GraphQL API endpoint
@@ -61,14 +63,20 @@ function App() {
               path='/signup'
               element={<SignupForm />}
             />
-
             {/* Route from Reservation component */}
             <Route
               // path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
               path='/booking'
               element={<BookingPage />}
             />
-
+            <Route
+              path='/user'
+              element={<UserPage />}
+            />
+            <Route
+              path='/admin'
+              element={<AdminPage />}
+            />
             <Route
               path='*'
               element={<h1 className='display-2'>No Matching Route!</h1>}
