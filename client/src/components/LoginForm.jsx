@@ -63,6 +63,7 @@ const LoginForm = (props) => {
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-lg" onSubmit={handleFormSubmit}>
           <div className="">
             <h2 className="text-center text-lg" >Login</h2>
+            <h2> You must Register or Login to complete your booking request</h2>
             <br></br>
             <p className="text-center text-lg">
               <Link to="/signup">Go to Signup</Link></p>

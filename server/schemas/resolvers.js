@@ -82,13 +82,17 @@ const resolvers = {
     },
 
     // resolver for adding a new Booking
-    addBooking: async (parent, { checkin, checkout, numAdults, numChildren, guestEmail, cottageName, amount }, context) => {
+    addBooking: async (parent, { checkin, checkout, numAdults, numChildren, cottageName, amount }, context) => {
+      const user = checkLoggedIn(context);
       
       if (context.user) {
+        const guestEmail = user.userEmail
+        console.log(`guestEmail: ${user.userEmail}`)
+        console.dir(user)
         const booking = await Booking.create({ checkin, checkout, numAdults, numChildren, guestEmail, cottageName, amount });
 
-        const user = await User.findOneAndUpdate(
-          { userEmail: guestEmail },
+        const updatedUser = await User.findOneAndUpdate(
+          { userEmail: user.userEmail },
           {
             $addToSet: {
               bookings: booking._id,
