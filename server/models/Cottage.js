@@ -26,10 +26,10 @@ const cottageSchema = new Schema(
       type: Number,
       required: [true, `How many rooms does the cottage have?`],
     },
-    amenities: {
+    amenities: [{
       type: Schema.Types.ObjectId,
       ref: 'Amenity'
-    },
+    }],
     maxGuests: {
       type: Number,
       required: [true, `What is the maximum number of guests`],
@@ -43,10 +43,10 @@ const cottageSchema = new Schema(
       type: Number,
       required: true,
     },
-    bookings: {
+    bookings: [{
       type: Schema.Types.ObjectId,
       ref: 'Booking',
-    },
+    }],
   },
   {
     timeStamps: true,

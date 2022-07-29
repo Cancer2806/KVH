@@ -35,10 +35,10 @@ const userSchema = new Schema(
       enum: ["guest", "admin"],
       default: "guest"
     },
-    bookings: {
+    bookings: [{
       type: Schema.Types.ObjectId,
       ref: 'Booking',
-    },
+    }],
   },
   // set this to use virtual below
   {

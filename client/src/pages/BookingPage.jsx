@@ -1,6 +1,6 @@
 // Component for displaying User signup form
 // import required dependencies
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Link, useParams, useLocation } from 'react-router-dom';
 
@@ -23,32 +23,64 @@ import AuthService from '../utils/auth';
 const BookingPage = () => {
 
   const { state } = useLocation();
-  console.log('state', state)
-  console.log('checkin:', state.checkin)
-  console.log('checkout:', state.checkout)
-  console.log('numA', state.numAdults)
-  console.log('numC', state.numChildren)
-  console.log('numDays', state.numDays)
+  // console.log('state', state)
 
   //  call ADD_BOOKING mutation
-  const [addBooking, { error, bookdata }] = useMutation(ADD_BOOKING);
+  const [addBooking, { error, bookingdata }] = useMutation(ADD_BOOKING);
 
-  let checkinDate = moment(state.checkin).format('DD-MM-YYYY')
-  let checkoutDate = moment(state.checkout).format('DD-MM-YYYY')
-  let numbAdults = Number(state.numAdults)
-  let numbChildren = Number(state.numChildren)
-  let numbDays = Number(state.numDays)
+  
+  console.log(`checkinDate: ${state.checkin}, ${state.checkout}`)
+  
+  let numAdults = Number(state.numAdults)
+  let numChildren = Number(state.numChildren)
+  let numDays = Number(state.numDays)
+  const requestin = moment(state.checkin, "DD-MM-YYYY")
+  const requestout = moment(state.checkout, "DD-MM-YYYY")
 
   // set initial form state
 
   const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
-  const cottages = data?.viewCottages || [];
-  const [cottage, setCottage] = useState(cottages)
+  const cottageData = data?.viewCottages || [];
+  const [cottages, setCottages] = useState(cottageData)
+  const [duplicateCottages, setDuplicateCottages] = useState(cottageData)
   const [amount, setAmount] = useState(0)
 
+  useEffect(() => {
+    let tempCottages = [];
 
-  async function roomSelect(cottId, cottNumber, cottrate) {
-    console.log(`this is the cottage selected ${cottId} with number ${cottNumber}`)
+    for (const duplicateCottage of duplicateCottages) {
+      let availability = true;
+      console.log(`how long ${duplicateCottage.cottageName}, ${duplicateCottage.bookings.length}`)
+      if (duplicateCottage.bookings.length > 0) {
+        for (const booking of duplicateCottage.bookings) {
+
+          // availability = false
+
+          const bookin = moment(booking.checkin, "DD-MM-YYYY")
+          const bookout = moment(booking.checkout, "DD-MM-YYYY")
+          const rin = requestin.isBetween(bookin, bookout)
+          const rout = requestout.isBetween(bookin, bookout)
+
+          console.log(`Booking ${duplicateCottage.cottageName}, ${booking.checkin} ${booking.checkout}`)
+
+          console.log(`Pepper2 ${duplicateCottage.cottageName}, ${rin} ${rout}`)
+
+
+          if (rin || rout || requestin !== bookin || (requestin<bookin && requestout>bookout) ) {
+            availability = false;
+          } console.log(`quicktest ${availability}`)
+        } 
+      }
+      if (availability === true || duplicateCottage.bookings.length === 0) {
+        tempCottages.push(duplicateCottage);
+        console.log(`tempCottages`, '%o', tempCottages)
+      }
+    }
+    setCottages(tempCottages)
+  }, []);
+
+  async function cottageSelect(cottId, cottName, cottrate) {
+    console.log(`this is the cottage selected ${cottId} with number ${cottName}`)
     setAmount(state.numDays * cottages.cottrate)
 
     // if logged in - get User details
@@ -58,24 +90,24 @@ const BookingPage = () => {
     //   return false;
     // }
 
-    try {
+    // try {
 
-      const { bookdata } = await addBooking({
-        variables: {
-          checkin: checkinDate,
-          checkout: checkoutDate,
-          numAdults: numbAdults,
-          numChildren: numbChildren,
-          // guest: 'HardCodedForNow',
-          // cottage: cottId,
-          amount: amount
-        },
-      });
+    //   const { bookdata } = await addBooking({
+    //     variables: {
+    //       checkin: checkinDate,
+    //       checkout: checkoutDate,
+    //       numAdults: numbAdults,
+    //       numChildren: numbChildren,
+    //       // guest: 'HardCodedForNow',
+    //       // cottage: cottId,
+    //       amount: amount
+    //     },
+    //   });
 
-    } catch (err) {
-      console.error(err);
-      // setShowAlert(true);
-    }
+    // } catch (err) {
+    //   console.error(err);
+    //   // setShowAlert(true);
+    // }
   }
 
 
@@ -90,10 +122,8 @@ const BookingPage = () => {
         {/* {state && ( */}
         (
         <div>
-          <p>state from : {state.from}</p>
-          <p>state from : {state.checkin}</p>
-          <p>checkin Date: {checkinDate}</p>
-          <p>Checkout Date: {checkoutDate}</p>
+          <p>checkin Date: {state.checkin}</p>
+          <p>Checkout Date: {state.checkout}</p>
           <p>Number of Adults: {state.numAdults}</p>
           <p>Number of Children: {state.numChildren}</p>
           <p>Amount: {amount}</p>
@@ -115,7 +145,7 @@ const BookingPage = () => {
               text={cottage.cottageDescription}
               baseRate={cottage.baseRate}
             />
-            <button className="ml-10 mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { roomSelect(cottage._id, cottage.cottageNumber, cottage.baseRate) }}>
+            <button className="ml-10 mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { cottageSelect(cottage._id, cottage.cottageNumber, cottage.baseRate) }}>
               Select Cottage</button>
           </div>
         )

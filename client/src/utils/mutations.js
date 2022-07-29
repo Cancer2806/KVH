@@ -32,10 +32,11 @@ export const ADD_USER = gql`
   }
 `
 
+
 // ADD_BOOKING will enter a cottage booking request
 export const ADD_BOOKING = gql`
-  mutation addBooking($checkin: String!, $checkout: String!, $numAdults: Int, $numChildren: Int, $amount: Float ) {
-    addBooking(checkin: $checkin, checkout: $checkout, numAdults: $numAdults, numChildren: $numChildren, amount: $amount) {
+  mutation addBooking($checkin: String!, $checkout: String!, $numAdults: Int, $numChildren: Int, $guestEmail: String, $cottageName: String, $amount: Float ) {
+    addBooking(checkin: $checkin, checkout: $checkout, numAdults: $numAdults, numChildren: $numChildren, guestEmail: $guestEmail, cottageName: $cottageName, amount: $amount) {
       numAdults
     }
   }

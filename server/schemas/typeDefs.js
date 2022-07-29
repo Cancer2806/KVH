@@ -100,15 +100,15 @@ type Mutation {
     amount: Float
   ): Booking
   
-  updateCottage(
-    cottageName: String!
-    numRooms: Int!
-    cottageDescription: String
-    amenities: [Amenity]
-    maxGuests: Int!
-    images: [String]
-    bookings: [Booking]
-  ): Cottage
+  # updateCottage(
+  #   cottageName: String!
+  #   numRooms: Int!
+  #   cottageDescription: String
+  #   amenities: [Amenity]
+  #   maxGuests: Int!
+  #   images: [String]
+  #   bookings: [Booking]
+  # ): Cottage
 }
 `;
 

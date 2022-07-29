@@ -27,9 +27,11 @@ const bookingSchema = new Schema(
     },
     numChildren: {
       type: Number,
+      default: 0
     },
     numPets: {
       type: Number,
+      default: 0
     },
     paymentMethod: {
       type: String,

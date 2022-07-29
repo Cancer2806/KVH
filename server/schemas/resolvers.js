@@ -22,7 +22,7 @@ function checkLoggedIn(context) {
 const resolvers = {
   Query: {
     viewCottages: async () => {
-      return await Cottage.find({})
+      return await Cottage.find({}).populate('bookings').populate('amenities');
     },
 
     viewAmenities: async () => {
@@ -30,7 +30,7 @@ const resolvers = {
     },
     
     viewUsers: async () => {
-      return await User.find({})
+      return await User.find({}).populate('bookings')
     },
 
     viewProperty: async () => {
@@ -44,7 +44,7 @@ const resolvers = {
     me: async (parent, args, context) => {
       const user = checkLoggedIn(context);
 
-      const foundUser = await User.findOne({ _id: user._id, });
+      const foundUser = await User.findOne({ _id: user._id, }).populate('bookings');
       if (!foundUser) {
         throw new Error(`Cannot find User`);
       }
@@ -82,28 +82,49 @@ const resolvers = {
     },
 
     // resolver for adding a new Booking
-    addBooking: async (parent, { checkin, checkout, numAdults, numChildren, amount }) => {
-      const booking = await Booking.create({ checkin, checkout, numAdults, numChildren, amount });
-      return { booking };
+    addBooking: async (parent, { checkin, checkout, numAdults, numChildren, guestEmail, cottageName, amount }, context) => {
+      
+      if (context.user) {
+        const booking = await Booking.create({ checkin, checkout, numAdults, numChildren, guestEmail, cottageName, amount });
+
+        const user = await User.findOneAndUpdate(
+          { userEmail: guestEmail },
+          {
+            $addToSet: {
+              bookings: booking._id,
+            },
+          }
+        );
+        const cottage = await Cottage.findOneAndUpdate(
+          { cottageName: cottageName },
+          {
+            $addToSet: {
+              bookings: booking._id,
+            },
+          }
+        );
+        return { booking };
+      }
+      throw new Error('You must be logged in to make a booking request');
     },
       
 
     // resolver for updating Cottage details - admin only
-    updateCottage: async (parent, { _id, cottageName }) => {
+    // updateCottage: async (parent, { _id, cottageName }) => {
 
-      try {
-        const foundCottage = await Cottage.findOneAndUpdate(
-          { cottageName: foundCottage.cottageName },
-        );
-        if (!foundCottage) {
-          throw new Error(`Could not find cottage with this name`);
-        }
-        return foundCottage;
-      } catch { error } {
-        console.log(error);
-        throw error;
-      };
-    },
+    //   try {
+    //     const foundCottage = await Cottage.findOneAndUpdate(
+    //       { cottageName: foundCottage.cottageName },
+    //     );
+    //     if (!foundCottage) {
+    //       throw new Error(`Could not find cottage with this name`);
+    //     }
+    //     return foundCottage;
+    //   } catch { error } {
+    //     console.log(error);
+    //     throw error;
+    //   };
+    // },
   },
 }
 
