@@ -2,7 +2,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_COTTAGES = gql`
-  query ViewCottages {
+  query viewCottages {
   viewCottages {
     _id
     cottageNumber

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, Tag } from "antd";
+import { Tab } from '@headlessui/react'
 
 import { useQuery, } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
@@ -26,12 +27,10 @@ export default function AdminPage() {
     if (!token || userData.userType !=='admin') {
       navigate('/login');
     }
-  
-  
 
   return (
     <div className="ml-3 mt-3 mr-3">
-      <h1 className="text-center"><strong>Admin Page</strong></h1>
+      <h1 className="text-center text-4xl"><strong>Administrators Console</strong></h1>
       <Tabs defaultActiveKey="1">
         <TabPane tab="Bookings" key="1">
           <h1>Here you can view all of your bookings</h1>

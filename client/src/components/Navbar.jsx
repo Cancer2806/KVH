@@ -36,7 +36,7 @@ export default function Navbar() {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-green-700">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -56,12 +56,12 @@ export default function Navbar() {
                 <div className="flex-shrink-0 flex items-center">
                   <a href="/">
                     <img
-                      className="block lg:hidden h-8 w-auto bg-green-500"
+                      className="block lg:hidden h-8 w-auto"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                       alt="Workflow"
                     />
                     <img
-                      className="hidden lg:block h-8 w-auto bg-green-700"
+                      className="hidden lg:block h-8 w-auto"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                       alt="Workflow"
                     /></a>

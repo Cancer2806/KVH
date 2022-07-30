@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, Tag } from "antd";
 
-import { useQuery, } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_USERS } from '../utils/queries';
 
 import Loader from './base/Loader';
 import Error from './base/Error';
 
 
-const { TabPane } = Tabs;
 
 // TODO Allow admin to update any and all details.  Standard is to change to Admin status
 // TODO show bookings as subset of each User or proived a button and select to see bookings

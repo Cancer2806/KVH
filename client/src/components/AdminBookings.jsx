@@ -29,7 +29,7 @@ export default function AdminBookings() {
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-        <table className="ml-5">
+        <table className=".table-auto ml-5">
           <thead className="mt-5">
             <tr className="ml-5">
               <th className="ml-5">Checkin</th>
