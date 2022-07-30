@@ -75,7 +75,7 @@ export const QUERY_ME = gql`
 }
   `
 
-export const QUERY_BOOKING = gql`
+export const QUERY_BOOKINGS = gql`
   query viewBookings {
     viewBookings {
     _id
@@ -86,7 +86,33 @@ export const QUERY_BOOKING = gql`
     numPets
     guestEmail
     cottageName
+    dateConfirmed
+    status
     amount
     }
   }
+  `
+
+export const QUERY_USERS = gql`
+  query viewUsers {
+    viewUsers {
+    _id
+    firstName
+    lastName
+    userEmail
+    userType
+    bookings {
+      cottageName
+      checkin
+      checkout
+      amount
+      numAdults
+      numChildren
+      numPets
+      guestEmail
+      status
+      dateConfirmed
+    }
+  }
+}
   `

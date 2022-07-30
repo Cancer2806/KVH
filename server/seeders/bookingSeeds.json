@@ -6,7 +6,8 @@
     "numChildren": 2,
     "status": "Requested",
     "guestEmail": "fred@flintstone.com",
-    "cottageName": "Peppermint"
+    "cottageName": "Peppermint",
+    "amount": 350
   },
   {
     "checkin": "17-08-2022",
@@ -15,9 +16,10 @@
     "numChildren": 2,
     "status": "Confirmed",
     "dateConfirmed": "31-07-2022",
-    "amountPaid": 275,
     "guestEmail": "fred@flintstone.com",
-    "cottageName": "Peppermint"
+    "cottageName": "Peppermint",
+    "amount": 350,
+    "amountPaid": 275
   },
   {
     "checkin": "18-08-2022",
@@ -26,7 +28,8 @@
     "numChildren": 2,
     "status": "Requested",
     "guestEmail": "jane@doe.com",
-    "cottageName": "Karri"
+    "cottageName": "Karri",
+    "amount": 500
   },
   {
     "checkin": "22-08-2022",
@@ -35,6 +38,7 @@
     "numChildren": 2,
     "status": "Requested",
     "guestEmail": "super@user.com",
-    "cottageName": "The Nest"
+    "cottageName": "The Nest",
+    "amount": 600
   }
 ]

@@ -43,6 +43,7 @@ const BookingPage = () => {
 
   const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
   const cottageData = data?.viewCottages || [];
+  
   const [cottages, setCottages] = useState(cottageData)
   const [duplicateCottages, setDuplicateCottages] = useState(cottageData)
   const [amount, setAmount] = useState(0)

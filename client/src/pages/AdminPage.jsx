@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import AuthService from '../utils/auth';
 
-import AdminUsers from "../components/AdminUsers";
 import AdminBookings from "../components/AdminBookings";
+import AdminCottages from "../components/AdminCottages";
+import AdminUsers from "../components/AdminUsers";
+import AdminProperty from "../components/AdminProperty";
 
 // TODO import components for tabs
 const { TabPane } = Tabs;
@@ -37,11 +39,14 @@ export default function AdminPage() {
         </TabPane>
         <TabPane tab="Cottages" key="2">
           <h1>Admin update cottages Component to go here</h1>
-          {/* <AdminCottage /> */}
+          <AdminCottages />
         </TabPane>
         <TabPane tab="Users" key="3">
           <h1>Here you can view all of your users</h1>
           <AdminUsers />
+        </TabPane>
+        <TabPane tab="Property" key="4">
+          <AdminProperty />
         </TabPane>
       </Tabs>
     </div>

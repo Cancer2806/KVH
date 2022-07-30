@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 
 import MoonLoader from "react-spinners/MoonLoader";
 
-function loader() {
+export default function Loader() {
  
-  let [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className="sweet-loading text-center">
@@ -14,5 +14,3 @@ function loader() {
     </div>
   )
 }
-
-export default loader

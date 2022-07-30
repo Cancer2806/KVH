@@ -55,12 +55,14 @@ const typeDefs = gql`
     _id: ID!
     checkin: String!
     checkout: String!
+    dateConfirmed: String
     numAdults: Int
     numChildren: Int
     numPets: Int
     guestEmail: String
     cottageName: String
     amount: Float
+    status: String
   }
 
   type Auth {

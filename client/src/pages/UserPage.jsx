@@ -18,11 +18,10 @@ export default function UserPage() {
   // ensure use only by logged in user
   const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
-  if (!token) {
     if (!token) {
       navigate('/login');
     }
-  }
+  
   
   function callback(key) {
     console.log(key);
