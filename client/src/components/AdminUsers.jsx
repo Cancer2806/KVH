@@ -21,33 +21,34 @@ export default function AdminUsers() {
 
   return (
     <>
-      <h1>Tables showing all Users</h1>
+      <h1 className="text-left text-2xl ml-10">All Users</h1>
       <hr></hr>
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-        <table className="ml-5">
-          <thead className="mt-5">
-            <tr className="ml-5">
-              <th className="ml-5">First Name</th>
-              <th className="ml-5">Last Name</th>
-              <th className="ml-5">Email</th>
-              <th className="ml-5">Type of User</th>
+
+        <table className="table-auto">
+          <thead className=" bg-green-500 text-xl">
+            <tr>
+              <th className="text-left pl-2">First Name</th>
+              <th className="text-left pl-2">Last Name</th>
+              <th className="text-left pl-5">Email</th>
+              <th className="text-center pl-2">Type of User</th>
             </tr>
           </thead>
           <tbody>
             {userData.length && (userData.map(user => {
               return <tr className="ml-5">
-                <td className="ml-5">{user.firstName}</td>
-                <td className="ml-5">{user.lastName}</td>
-                <td className="ml-5">{user.userEmail}</td>
-                <td className="ml-5">{user.userType}</td>
+                <td className="pl-2">{user.firstName}</td>
+                <td className="pl-2">{user.lastName}</td>
+                <td className="pl-5">{user.userEmail}</td>
+                <td className="text-center pl-2">{user.userType}</td>
               </tr>
             }))}
           </tbody>
         </table>
         <hr></hr>
-        {userData.length && (<h1>There are a total of {userData.length} users</h1>)}
+        {userData.length && (<h2 className="text-left pl-5 text-xl">There are a total of {userData.length} users</h2>)}
       </div>
     </>
   )

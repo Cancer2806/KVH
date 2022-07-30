@@ -8,10 +8,7 @@ import Loader from './base/Loader';
 import Error from './base/Error';
 
 
-
-// TODO Allow admin to update any and all details.  Standard is to change to Admin status
-// TODO show bookings as subset of each User or proived a button and select to see bookings
-
+// TODO Allow admin to update any and all details
 
 export default function AdminProperty() {
   const { loading, error, data } = useQuery(QUERY_PROPERTY);
@@ -21,7 +18,7 @@ export default function AdminProperty() {
 
   return (
     <>
-      <h1 className="text-center text-xl">Property Details</h1>
+      <h1 className="text-center text-2xl">Property Details</h1>
       <hr></hr>
       <div>
         {loading && (<Loader />)}
@@ -29,22 +26,22 @@ export default function AdminProperty() {
         {propertyData.length && (propertyData.map(property => {
           return (
             <>
-              <h1>Property Name: &nbsp; {property.propertyName}</h1>
+              <h2 className="text-xl pl-5 pr-5 mr-10">Property Name: &nbsp; <strong>{property.propertyName}</strong></h2>
               <hr></hr>
-              <h3>Description: &nbsp; <strong>{property.propertyDescription}</strong></h3>
-              <h4>ABN: &nbsp; <strong>{property.ABN}</strong></h4>
-              <h4>ACN: &nbsp; <strong>{property.ACN}</strong></h4>
-              <h4>Logo: &nbsp; <strong>{property.Logo}</strong></h4>
-              <h4>Email: &nbsp; <strong>{property.propertyEmail}</strong></h4>
-              <h4>Website: &nbsp; <strong>{property.webAddress}</strong></h4>
-              <h4>Street Address: &nbsp; <strong>{property.streetAddress}</strong></h4>
-              <h4>Postal Address:&nbsp; <strong>{property.postalAddress}</strong></h4>
-              <h4>Contact Person: &nbsp; <strong>{property.contact}</strong></h4>
+              <h3 className="pl-5 pr-5 mr-10">Description: &nbsp; <strong>{property.propertyDescription}</strong></h3>
+              <h4 className="pl-5 pr-5 mr-10">ABN: &nbsp; <strong>{property.ABN}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">ACN: &nbsp; <strong>{property.ACN}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Logo: &nbsp; <strong>{property.Logo}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Email: &nbsp; <strong>{property.propertyEmail}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Website: &nbsp; <strong>{property.webAddress}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Street Address: &nbsp; <strong>{property.streetAddress}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Postal Address:&nbsp; <strong>{property.postalAddress}</strong></h4>
+              <h4 className="pl-5 pr-5 mr-10">Contact Person: &nbsp; <strong>{property.contact}</strong></h4>
               <hr></hr>
               {property.images.length && (property.images.map(image => {
                 return (
                   <div>
-                    <img className="rounded-lg" src={`${process.env.PUBLIC_URL}${image}`} alt="Not viewable" />
+                    <img className="rounded-lg w-160 md:w-320 lg:w-480" src={`${process.env.PUBLIC_URL}${image}`} alt="Not viewable" />
 
                     <p>Image location: {image}</p>
                   </div>

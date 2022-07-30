@@ -33,15 +33,12 @@ export default function AdminPage() {
       <h1 className="text-center text-4xl"><strong>Administrators Console</strong></h1>
       <Tabs defaultActiveKey="1">
         <TabPane tab="Bookings" key="1">
-          <h1>Here you can view all of your bookings</h1>
           <AdminBookings />
         </TabPane>
         <TabPane tab="Cottages" key="2">
-          <h1>Admin update cottages Component to go here</h1>
           <AdminCottages />
         </TabPane>
         <TabPane tab="Users" key="3">
-          <h1>Here you can view all of your users</h1>
           <AdminUsers />
         </TabPane>
         <TabPane tab="Property" key="4">

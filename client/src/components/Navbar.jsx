@@ -31,9 +31,6 @@ function classNames(...classes) {
 export default function Navbar() {
   const { loading, error, data } = useQuery(QUERY_ME);
   let userData = data?.me || {};
-  if (userData) {
-    // console.log(userData.userType)
-  }
 
   return (
     <Disclosure as="nav" className="bg-green-700">
@@ -56,12 +53,12 @@ export default function Navbar() {
                 <div className="flex-shrink-0 flex items-center">
                   <a href="/">
                     <img
-                      className="block lg:hidden h-8 w-auto"
+                      className="block md:hidden h-8 w-auto"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                       alt="Workflow"
                     />
                     <img
-                      className="hidden lg:block h-8 w-auto"
+                      className="hidden md:block h-8 w-2/3"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                       alt="Workflow"
                     /></a>
@@ -102,7 +99,6 @@ export default function Navbar() {
                     </>
                   ) : (
                     <li className="mx-1 text-white">
-                      {/* TODO figure out how to do with Modal with Tailwind */}
                       <Link to="/login">Login / Register
                       </Link>
                     </li>

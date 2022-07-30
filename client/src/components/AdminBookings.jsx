@@ -18,49 +18,50 @@ export default function AdminBookings() {
   const { loading, error, data } = useQuery(QUERY_BOOKINGS);
   let bookingData = data?.viewBookings || {};
 
-  const [bookings, setBookings] = useState(bookingData);
+  // const [bookings, setBookings] = useState(bookingData);
 
   // setBookings(bookingData);
 
   return (
     <>
-      <h1>Admin Bookings Table</h1>
+      <h1 className="text-center text-2xl mr-10">Bookings</h1>
       <hr></hr>
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-        <table className=".table-auto ml-5">
-          <thead className="mt-5">
-            <tr className="ml-5">
-              <th className="ml-5">Checkin</th>
-              <th className="ml-5">Checkout</th>
-              <th className="ml-5">Cottage</th>
-              <th className="ml-5">Guest</th>
-              <th className="ml-5">Adults</th>
-              <th className="ml-5">Children</th>
-              <th className="ml-5">Date Confirmed</th>
-              <th className="ml-5">Status</th>
-              <th className="ml-5">Amount</th>
+
+        <table className="table-auto">
+          <thead className=" bg-green-500 text-lg">
+            <tr>
+              <th className="text-center">Checkin &nbsp; </th>
+              <th className="text-center">Checkout &nbsp; </th>
+              <th className="pl-2">Cottage &nbsp; </th>
+              <th className="text-left">Guest &nbsp; </th>
+              <th className="pl-2">Adults &nbsp; </th>
+              <th className="pl-2">Children &nbsp; </th>
+              <th className="text-center">Date Confirmed &nbsp; </th>
+              <th className="pl-2">Status &nbsp; </th>
+              <th className="text-center">Amount &nbsp; </th>
             </tr>
           </thead>
           <tbody>
             {bookingData.length && (bookingData.map(booking => {
-              return <tr className="ml-5">
-                <td className="ml-5">{booking.checkin}</td>
-                <td className="ml-5">{booking.checkout}</td>
-                <td className="ml-10">{booking.cottageName}</td>
-                <td className="ml-5">{booking.guestEmail}</td>
-                <td className="ml-5">{booking.numAdults}</td>
-                <td className="ml-5">{booking.numChildren}</td>
-                <td className="ml-5">{booking.dateConfirmed}</td>
-                <td className="ml-5">{booking.Status}</td>
-                <td className="ml-5">{booking.amount}</td>
+              return <tr>
+                <td className="text-center">{booking.checkin} &nbsp; </td>
+                <td className="text-center">{booking.checkout} &nbsp; </td>
+                <td className="text-left pl-2">{booking.cottageName} &nbsp; </td>
+                <td className="text-left">{booking.guestEmail} &nbsp;  &nbsp; </td>
+                <td className="text-center">{booking.numAdults} &nbsp; </td>
+                <td className="text-center">{booking.numChildren} &nbsp; </td>
+                <td className="text-center">{booking.dateConfirmed} &nbsp; </td>
+                <td className="text-center">{booking.Status} &nbsp; </td>
+                <td className="text-right">{booking.amount} &nbsp; </td>
               </tr>
             }))}
           </tbody>
         </table>
         <hr></hr>
-        {bookingData.length && (<h1>There are a total of {bookingData.length} bookings</h1>)}
+        {bookingData.length && (<h2 className="text-center text-xl">There are a total of {bookingData.length} bookings</h2>)}
       </div>
     </>
   )

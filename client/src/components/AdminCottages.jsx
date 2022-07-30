@@ -24,39 +24,39 @@ export default function AdminCottages() {
 
   return (
     <>
-      <h1>Cottage Details</h1>
+      <h1 className="text-center text-2xl mr-10">Cottage Details</h1>
       <hr></hr>
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
         
-        <table className="ml-5">
-          <thead className="mt-5">
-            <tr className="ml-5">
-              <th className="ml-5">Number</th>
-              <th className="ml-5">Name</th>
-              <th className="ml-5">Rooms</th>
-              <th className="ml-5">Maximum Guests</th>
-              <th className="ml-5">Base Rate</th>
-              <th className="ml-5">Description</th>
-
+        <table className="table-auto">
+          <thead className=" bg-green-500 text-base">
+            <tr>
+              <th className="text-center">Number</th>
+              <th className="text-left pl-2">Name</th>
+              <th >Rooms</th>
+              <th className="pl-2">Max Guests</th>
+              <th className="pl-2">Base Rate</th>
+              <th className="text-left pl-5">Description</th>
             </tr>
           </thead>
           <tbody>
             {cottageData.length && (cottageData.map(cottage => {
-              return <tr className="ml-5">
-                <td className="ml-5">{cottage.cottageNumber}</td>
-                <td className="ml-5">{cottage.cottageName}</td>
-                <td className="ml-10">{cottage.numRooms}</td>
-                <td className="ml-5">{cottage.maxGuests}</td>
-                <td className="ml-5">{cottage.baseRate}</td>
-                <td className="ml-5">{cottage.cottageDescription}</td>
+              return <tr>
+                <td className="text-center">{cottage.cottageNumber}</td>
+                <td className="text-left pl-2">{cottage.cottageName}</td>
+                <td className="text-center">{cottage.numRooms}</td>
+                <td className="text-center">{cottage.maxGuests}</td>
+                <td className="text-center">{cottage.baseRate}</td>
+                <td className="pl-5
+                ">{cottage.cottageDescription}</td>
               </tr>
             }))}
           </tbody>
         </table>
         <hr></hr>
-        {cottageData.length && (<h1>There are a total of {cottageData.length} cottages</h1>)}
+        {cottageData.length && (<h2 className="text-center text-xl">There are a total of {cottageData.length} cottages</h2>)}
       </div>
     </>
   )
