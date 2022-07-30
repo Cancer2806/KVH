@@ -6,9 +6,16 @@ import { setContext } from '@apollo/client/link/context';
 import './App.css';
 
 // import required components/pages
-import HomePage from './pages/HomePage';
-import BookingPage from './pages/BookingPage';
 import Navbar from './components/Navbar'
+
+import HomePage from './pages/HomePage';
+import CottagesPage from './pages/CottagesPage';
+import AttractionsPage from './pages/AttractionsPage';
+import LocationPage from './pages/LocationPage';
+import ContactPage from './pages/ContactPage';
+import FaqPage from './pages/FaqPage';
+
+import BookingPage from './pages/BookingPage';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import UserPage from './pages/UserPage';
@@ -46,7 +53,7 @@ function App() {
         <>
           <Navbar />
           <div className="App">
-            <h1 className="flex flex-row bg-green-500 border-2 border-red-500 justify-center">
+            <h1 className="flex flex-row bg-green-600 border-2 border-red-500 justify-center">
               Cottages are great and Karri Valley is fabulous. &nbsp; Why not visit and stay with us?
             </h1>
           </div>
@@ -54,6 +61,26 @@ function App() {
             <Route
               path='/'
               element={<HomePage />}
+            />
+            <Route
+              path='/cottages'
+              element={<CottagesPage />}
+            />
+            <Route
+              path='/attractions'
+              element={<AttractionsPage />}
+            />
+            <Route
+              path='/location'
+              element={<LocationPage />}
+            />
+            <Route
+              path='/contact'
+              element={<ContactPage />}
+            />
+            <Route
+              path='/faq'
+              element={<FaqPage />}
             />
             <Route
               path='/login'
@@ -65,7 +92,6 @@ function App() {
             />
             {/* Route from Reservation component */}
             <Route
-              // path='/booking/:checkin/:checkout/:numAdults/:numChildren/:numDays'
               path='/booking'
               element={<BookingPage />}
             />
