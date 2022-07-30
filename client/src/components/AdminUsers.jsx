@@ -20,9 +20,6 @@ export default function AdminUsers() {
 
   const [users, setUsers] = useState(userData);
 
-  // console.log(`users '%o' ${userData}`)
-  // setBookings(bookingData);
-
   return (
     <>
       <h1>Tables showing all Users</h1>

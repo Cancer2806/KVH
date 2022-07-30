@@ -17,8 +17,6 @@ export default function AdminProperty() {
 
   const [property, setProperty] = useState(propertyData);
 
-  console.log(`property: '%o' ${propertyData}`)
-
   return (
     <>
       <div>
