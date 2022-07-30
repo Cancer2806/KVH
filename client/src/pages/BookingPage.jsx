@@ -2,7 +2,7 @@
 // import required dependencies
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 // import mutations
@@ -17,8 +17,7 @@ import AuthService from '../utils/auth';
 // TODO TODO TODO
 // Display only available cottages - issue with logic if cottage has multiple bookings
 // Allow guest to select cottage 
-// Login or signup User to obtain guest details and complete booking
-// amount to be calculated
+// Login or signup User to obtain guest details and complete booking: modal and without losing details
 
 const BookingPage = () => {
 
