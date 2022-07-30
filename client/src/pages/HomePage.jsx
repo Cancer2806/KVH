@@ -26,9 +26,10 @@ const HomePage = () => {
         <ReservationForm />
       </div>
       {/* Cottage layout to be improved on mobile - 1 wide, on comp 3 wide */}
+      <div className="p-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
       {cottages.map((cottage, index) => {
         return (
-          <div className="container">
+          
           
             <Card key={cottage.cottageNumber}
               img={cottage.images[0]}
@@ -38,9 +39,10 @@ const HomePage = () => {
               max={cottage.maxGuests}
               text={cottage.cottageDescription}
             />
-          </div>
+          
         )
       })}
+      </div>
     </>);
 };
 

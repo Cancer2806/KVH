@@ -55,12 +55,12 @@ export default function Navbar() {
                     <img
                       className="block md:hidden h-8 w-auto"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
-                      alt="Workflow"
+                      alt="Logo"
                     />
                     <img
                       className="hidden md:block h-8 w-2/3"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
-                      alt="Workflow"
+                      alt="Logo"
                     /></a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
