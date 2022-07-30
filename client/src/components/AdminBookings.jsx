@@ -26,7 +26,7 @@ export default function AdminBookings() {
     <>
       <h1>Admin Bookings Table</h1>
       <hr></hr>
-      <div >
+      <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
         <table className="ml-5">

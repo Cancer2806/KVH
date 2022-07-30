@@ -26,7 +26,7 @@ export default function AdminCottages() {
     <>
       <h1>Cottage Details</h1>
       <hr></hr>
-      <div >
+      <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
         

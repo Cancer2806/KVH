@@ -23,8 +23,6 @@ const BookingPage = () => {
 
   const { state } = useLocation();
   let navigate = useNavigate();
-  
-  // console.log('state', state)
 
   //  call ADD_BOOKING mutation
   const [addBooking, { error, bookingdata }] = useMutation(ADD_BOOKING);
@@ -44,21 +42,20 @@ const BookingPage = () => {
   const cottageData = data?.viewCottages || [];
   
   const [cottages, setCottages] = useState(cottageData)
-  const [duplicateCottages, setDuplicateCottages] = useState(cottageData)
   const [amount, setAmount] = useState(0)
 
 
-  // Issue with this as it either renders in an endless loop, or only runs once - need to re-run if Reservation Form changes
-  // Issus with this in that a cottage with two bookings can give a false availability
+  // TODO Issue with this as it either renders in an endless loop, or only runs once - need to re-run if Reservation Form changes
+  // /TODO Issue with this in that a cottage with two bookings can give a false availability
   // It may be better to filter out a cottage as soon as found to be unavailable
   
   useEffect(() => {
     let tempCottages = [];
 
-    for (const duplicateCottage of duplicateCottages) {
+    for (const cottage of cottages) {
       let availability = false;
-      if (duplicateCottage.bookings.length > 0) {
-        for (const booking of duplicateCottage.bookings) {
+      if (cottage.bookings.length > 0) {
+        for (const booking of cottage.bookings) {
 
           availability=false
 
@@ -67,18 +64,16 @@ const BookingPage = () => {
           const rin = requestin.isBetween(bookin, bookout)
           const rout = requestout.isBetween(bookin, bookout)
 
-          console.log(`Booking ${duplicateCottage.cottageName}, ${booking.checkin} ${booking.checkout}`)
+          console.log(`Booking ${cottage.cottageName}, ${booking.checkin} ${booking.checkout}`)
 
-          console.log(`Pepper2 ${duplicateCottage.cottageName}, ${rin} ${rout}`)
-
-
+          console.log(`Pepper2 ${cottage.cottageName}, ${rin} ${rout}`)
           if (!rin && !rout && requestin !== bookin && !(requestin<bookin && requestout>bookout) && requestout !==bookout ) {
             availability = true;
           }
         } 
       }
-      if (availability === true || duplicateCottage.bookings.length === 0) {
-        tempCottages.push(duplicateCottage);
+      if (availability === true || cottage.bookings.length === 0) {
+        tempCottages.push(cottage);
         // console.log(`tempCottages`, '%o', tempCottages)
       }
     }
@@ -89,9 +84,8 @@ const BookingPage = () => {
   async function cottageSelect(cottId, cottName, cottrate) {
     setAmount(numDays * cottrate)
 
-    // if logged in - get User details
-    // if not logged in - Register/Login
-    // need to be able to login without losing booking data
+    // if logged in - continue with booking
+    // TODO if not logged in - open Register/Login as a Modal but without losing booking data 
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     
@@ -107,7 +101,6 @@ const BookingPage = () => {
           checkout: state.checkout,
           numAdults: numAdults,
           numChildren: numChildren,
-          // guestEmail: 'fred@flintstone.com',
           cottageName: cottName,
           amount: numDays*cottrate
         },
@@ -119,13 +112,13 @@ const BookingPage = () => {
     }
   }
 
-
-
   return (
     <>
       <div>
         <ReservationForm />
       </div>
+
+      {/* TODO Booking details to show at top of screen in box, above available cottage list */}
       <div className="w-full max-w-md box-border h-64 p-4 border-4">
         <h2>Booking Details</h2>
                 
@@ -153,6 +146,8 @@ const BookingPage = () => {
               text={cottage.cottageDescription}
               baseRate={cottage.baseRate}
             />
+
+            {/* View details button to open a modal showing more information about the selected cottage */}
             <button className="ml-10 mb-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { cottageSelect(cottage._id, cottage.cottageName, cottage.baseRate) }}>
               Select Cottage</button>
           </div>

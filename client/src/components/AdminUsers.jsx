@@ -27,7 +27,7 @@ export default function AdminUsers() {
     <>
       <h1>Tables showing all Users</h1>
       <hr></hr>
-      <div >
+      <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
         <table className="ml-5">

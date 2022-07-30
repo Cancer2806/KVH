@@ -20,8 +20,8 @@ const navigation = [
   { name: 'Our Cottages', href: '/cottages', current: false },
   { name: 'Attractions', href: '/attractions', current: false },
   { name: 'Location', href: '/location', current: false },
-  { name: 'Contact Us', href: 'contact', current: false },
-  { name: 'FAQ', href: 'faq', current: false },
+  { name: 'Contact Us', href: '/contact', current: false },
+  { name: 'FAQ', href: '/faq', current: false },
 ]
 
 function classNames(...classes) {
@@ -87,7 +87,7 @@ export default function Navbar() {
 
               {/* If user is logged in, show the logout */}
               <ul className="flex-row">
-                {AuthService.loggedIn() && userData.userType == 'admin' ? (
+                {AuthService.loggedIn() && userData.userType === 'admin' ? (
                   <>
                     {/* Admin button goes to admin pages */}
                     <Link to="/admin" className="text-white">Admin</Link>

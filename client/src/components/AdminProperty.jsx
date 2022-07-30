@@ -17,9 +17,11 @@ export default function AdminProperty() {
 
   const [property, setProperty] = useState(propertyData);
 
+  console.log(`property: '%o' ${propertyData}`)
+
   return (
     <>
-      <div >
+      <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
         <h1>Property Name:  &nbsp; <strong>{propertyData[0].propertyName}</strong></h1>
