@@ -29,7 +29,7 @@ const BookingPage = () => {
 
   //  call ADD_BOOKING mutation
   const [addBooking, { error, bookingdata }] = useMutation(ADD_BOOKING);
-  let run = true;
+  // let run = true;
 
   console.log(`checkinDate: ${state.checkin}, ${state.checkout}`)
 

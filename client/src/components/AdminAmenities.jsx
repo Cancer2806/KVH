@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Tabs, Tag } from "antd";
 
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_AMENITIES } from '../utils/queries';
+import { REMOVE_AMENITY } from "../utils/mutations";
 
 import Loader from './base/Loader';
 import Error from './base/Error';
@@ -15,21 +16,34 @@ import Error from './base/Error';
 
 
 export default function AdminAmenities() {
+
+  const [value, setvalue] = useState(0);
+
+  const [removeAmenity, { err, amenity }] = useMutation(REMOVE_AMENITY);
+  
   const { loading, error, data } = useQuery(QUERY_AMENITIES);
   let amenityData = data?.viewAmenities || [];
 
+  
+
   async function amenitySelect(id, name, type, description) {
-    // setAmount(numDays * cottrate)
-
+ 
     console.log(`button returns: ${id}, ${name}, ${type}, ${description}`)
-
   }
 
   async function amenityDelete(id) {
-    // setAmount(numDays * cottrate)
-
-    console.log(`delete button returns: ${id}`)
-
+    
+    try {
+      const { data } = await removeAmenity({
+        variables: {
+          amenityId: id
+        },
+      })
+      setvalue(value + 1);
+    } catch (error) {
+      console.error(error)
+    }
+    
   }
 
 

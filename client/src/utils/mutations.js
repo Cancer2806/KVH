@@ -37,7 +37,22 @@ export const ADD_USER = gql`
 export const ADD_BOOKING = gql`
   mutation addBooking($checkin: String!, $checkout: String!, $numAdults: Int, $numChildren: Int, $cottageName: String, $amount: Float ) {
     addBooking(checkin: $checkin, checkout: $checkout, numAdults: $numAdults, numChildren: $numChildren, cottageName: $cottageName, amount: $amount) {
+      checkin
+      checkout
       numAdults
+      numChildren
+      guestEmail
+      cottageName
     }
   }
+`
+
+// REMOVE_AMENITY will remove an Amenity
+export const REMOVE_AMENITY = gql`
+  mutation removeAmenity($amenityId: ID!) {
+    removeAmenity(amenityId: $amenityId)
+  {
+    _id
+  }
+}
 `

@@ -102,6 +102,9 @@ type Mutation {
     amount: Float
   ): Booking
   
+  removeAmenity(
+    amenityId: ID!): Amenity
+
   # updateCottage(
   #   cottageName: String!
   #   numRooms: Int!

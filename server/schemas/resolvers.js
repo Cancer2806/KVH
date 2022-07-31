@@ -111,6 +111,10 @@ const resolvers = {
       throw new Error('You must be logged in to make a booking request');
     },
       
+    removeAmenity: async (parent, { amenityId }) => {
+      return Amenity.findOneAndDelete({ _id: amenityId });
+    },
+
 
     // resolver for updating Cottage details - admin only
     // updateCottage: async (parent, { _id, cottageName }) => {
