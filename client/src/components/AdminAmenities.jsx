@@ -5,9 +5,11 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_AMENITIES } from '../utils/queries';
 import { REMOVE_AMENITY } from "../utils/mutations";
 
+import Button from './base/Button'
 import Loader from './base/Loader';
 import Error from './base/Error';
-
+import Success from './base/Success'
+import AmenityForm from './base/AmenityForm'
 
 
 // TODO Allow admin to create a new Amenity
@@ -40,12 +42,18 @@ export default function AdminAmenities() {
         },
       })
       setvalue(value + 1);
+      return (<Success message="Item Deleted" />)
     } catch (error) {
       console.error(error)
     }
     
   }
 
+  async function newAmenity() {
+
+    console.log(`clicked on newAmenity button`)
+    // return (<AmenityForm />)
+  }
 
   return (
     <>
@@ -78,6 +86,9 @@ export default function AdminAmenities() {
           </tbody>
         </table>
         <hr></hr>
+        <div>
+          <Button onClick={newAmenity()} text='Add Amenity' />
+        </div>
       </div>
     </>
   )

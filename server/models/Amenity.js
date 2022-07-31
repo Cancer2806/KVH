@@ -10,6 +10,7 @@ const amenitySchema = new Schema(
     amenityName: {
       type: String,
       required: true,
+      unique: true
     },
     amenityDescription: {
       type: String,

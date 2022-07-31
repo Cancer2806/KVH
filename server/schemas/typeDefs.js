@@ -102,6 +102,12 @@ type Mutation {
     amount: Float
   ): Booking
   
+  addAmenity(
+    amenityName: String!
+    amenityDescription: String
+    amenityType: String
+  ): Amenity
+
   removeAmenity(
     amenityId: ID!): Amenity
 

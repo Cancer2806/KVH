@@ -109,11 +109,11 @@ const BookingPage = () => {
           amount: numDays * cottrate
         },
       });
+      return (<Success message="Request received - email on the way" />)
     } catch (err) {
       console.error(err);
       // setShowAlert(true);
     }
-    return (<Success message="Request received - email on the way" />)
   }
 
   return (

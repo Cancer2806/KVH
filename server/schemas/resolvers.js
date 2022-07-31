@@ -111,6 +111,14 @@ const resolvers = {
       throw new Error('You must be logged in to make a booking request');
     },
       
+    // resolver for adding a new Amenity
+    addAmenity: async (parent, { amenityName, amenityDescription, amenityType }) => {
+
+      const amenity = await Amenity.create({ amenityName, amenityDescription, amenityType });
+
+        return { amenity };
+    },
+
     removeAmenity: async (parent, { amenityId }) => {
       return Amenity.findOneAndDelete({ _id: amenityId });
     },
