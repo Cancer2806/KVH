@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Tabs, Tag } from "antd";
 
 import { useQuery } from '@apollo/client';
-import { QUERY_USERS, QUERY_PROPERTY } from '../utils/queries';
+import { QUERY_PROPERTY } from '../utils/queries';
 
 import Loader from './base/Loader';
 import Error from './base/Error';
@@ -10,11 +10,16 @@ import Error from './base/Error';
 
 // TODO Allow admin to update any and all details
 
-export default function AdminProperty() {
-  const { loading, error, data } = useQuery(QUERY_PROPERTY);
-  let propertyData = data?.viewProperty || [];
 
-  const [property, setProperty] = useState(propertyData);
+export default function AdminProperty() {
+  
+  const { loading, error, data } = useQuery(QUERY_PROPERTY);
+
+  const [property, setProperty] = useState([]);
+
+  useEffect(() => {
+  setProperty(data?.viewProperty || [])
+}, [data])
 
   return (
     <>
@@ -23,7 +28,7 @@ export default function AdminProperty() {
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-        {propertyData.length && (propertyData.map(property => {
+        {property.length && (property.map(property => {
           return (
             <>
               <h2 className="text-xl pl-5 pr-5 mr-10">Property Name: &nbsp; <strong>{property.propertyName}</strong></h2>

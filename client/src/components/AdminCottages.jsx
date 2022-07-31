@@ -8,19 +8,19 @@ import Loader from './base/Loader';
 import Error from './base/Error';
 
 
-const { TabPane } = Tabs;
-
 // TODO Allow admin to update any and all details.  Standard is to change description / rates / images
 
 
 export default function AdminCottages() {
 
   const { loading, error, data } = useQuery(QUERY_ALL_COTTAGES);
-  let cottageData = data?.viewCottages || {};
+  
+  const [cottages, setCottages] = useState([]);
 
-  const [cottages, setCottages] = useState(cottageData);
+  useEffect(() => {
+    setCottages(data?.viewCottages || [])
+  }, [data])
 
-  // setCottages(cottageData);
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function AdminCottages() {
             </tr>
           </thead>
           <tbody>
-            {cottageData.length && (cottageData.map(cottage => {
+            {cottages.length && (cottages.map(cottage => {
               return <tr>
                 <td className="text-center">{cottage.cottageNumber}</td>
                 <td className="text-left pl-2">{cottage.cottageName}</td>
@@ -56,7 +56,7 @@ export default function AdminCottages() {
           </tbody>
         </table>
         <hr></hr>
-        {cottageData.length && (<h2 className="text-center text-xl">There are a total of {cottageData.length} cottages</h2>)}
+        {cottages.length && (<h2 className="text-center text-xl">There are a total of {cottages.length} cottages</h2>)}
       </div>
     </>
   )

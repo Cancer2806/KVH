@@ -24,9 +24,12 @@ export default function AdminAmenities() {
   const [removeAmenity, { err, amenity }] = useMutation(REMOVE_AMENITY);
   
   const { loading, error, data } = useQuery(QUERY_AMENITIES);
-  let amenityData = data?.viewAmenities || [];
+  const [amenities, setAmenities] = useState([]);
 
-  
+  useEffect(() => {
+    setAmenities ( data?.viewAmenities || [])
+    console.log(data);
+  }, [data]);
 
   async function amenitySelect(id, name, type, description) {
  
@@ -61,9 +64,9 @@ export default function AdminAmenities() {
       <hr></hr>
       <div>
         {loading && (<Loader />)}
-        {error && (<Error />)}
-
-        <table className="table-auto">
+        {(error || err) && (<Error />)}
+        
+        <table className="table-auto mb-5">
           <thead className=" bg-green-500 text-xl">
             <tr>
               <th className="text-left pl-2">Amenity Name</th>
@@ -74,7 +77,7 @@ export default function AdminAmenities() {
             </tr>
           </thead>
           <tbody>
-            {amenityData.length && (amenityData.map(amenity => {
+            {amenities.length && (amenities.map(amenity => {
               return <tr className="ml-5">
                 <td className="pl-2">{amenity.amenityName}</td>
                 <td className="pl-2">{amenity.amenityType}</td>
@@ -85,9 +88,9 @@ export default function AdminAmenities() {
             }))}
           </tbody>
         </table>
-        <hr></hr>
+        <hr className="mb-5"></hr>
         <div>
-          <Button onClick={newAmenity()} text='Add Amenity' />
+          <Button text='Add Amenity' onClick={newAmenity()}  />
         </div>
       </div>
     </>

@@ -6,6 +6,9 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { useNavigate } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client'
+import { ADD_AMENITY } from '../../utils/mutations';
+
 
 
 // define and set state for User login form
@@ -14,6 +17,7 @@ export default function AmenityForm (id, name, type, description) {
   const [formData, setFormData] = useState({ name: name, type: type, description: description });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [addAmenity, {error}] = useMutation(ADD_AMENITY);
 
   let navigate = useNavigate();
 
@@ -37,7 +41,9 @@ export default function AmenityForm (id, name, type, description) {
     }
 
     try {
-      
+      const { data } = await addAmenity({
+        variables: { ...formData },
+      })
 
       // addAmenity
       // updateAmenity

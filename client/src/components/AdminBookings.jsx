@@ -8,19 +8,19 @@ import Loader from './base/Loader';
 import Error from './base/Error';
 
 
-const { TabPane } = Tabs;
-
 // TODO Allow admin to update any and all details.  Standard is to confirm/cancel
 
 
 export default function AdminBookings() {
 
   const { loading, error, data } = useQuery(QUERY_BOOKINGS);
-  let bookingData = data?.viewBookings || {};
+  
+  const [bookings, setBookings] = useState([]);
 
-  // const [bookings, setBookings] = useState(bookingData);
+  useEffect(() => {
+    setBookings(data?.viewBookings || [])
+  }, [data]);
 
-  // setBookings(bookingData);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function AdminBookings() {
             </tr>
           </thead>
           <tbody>
-            {bookingData.length && (bookingData.map(booking => {
+            {bookings.length && (bookings.map(booking => {
               return <tr>
                 <td className="text-center">{booking.checkin} &nbsp; </td>
                 <td className="text-center">{booking.checkout} &nbsp; </td>
@@ -61,7 +61,7 @@ export default function AdminBookings() {
           </tbody>
         </table>
         <hr></hr>
-        {bookingData.length && (<h2 className="text-center text-xl">There are a total of {bookingData.length} bookings</h2>)}
+        {bookings.length && (<h2 className="text-center text-xl">There are a total of {bookings.length} bookings</h2>)}
       </div>
     </>
   )
