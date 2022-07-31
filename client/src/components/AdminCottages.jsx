@@ -42,8 +42,8 @@ export default function AdminCottages() {
             </tr>
           </thead>
           <tbody>
-            {cottages.length && (cottages.map(cottage => {
-              return <tr>
+            {cottages.length ? (cottages.map(cottage => {
+              return <tr key={(cottage._id)}>
                 <td className="text-center">{cottage.cottageNumber}</td>
                 <td className="text-left pl-2">{cottage.cottageName}</td>
                 <td className="text-center">{cottage.numRooms}</td>
@@ -52,7 +52,7 @@ export default function AdminCottages() {
                 <td className="pl-5
                 ">{cottage.cottageDescription}</td>
               </tr>
-            }))}
+            })): null}
           </tbody>
         </table>
         <hr></hr>

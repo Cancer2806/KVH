@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Tabs, Tag } from "antd";
+import { BackTop, Tabs, Tag } from "antd";
 
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_AMENITIES } from '../utils/queries';
@@ -9,6 +9,7 @@ import Button from './base/Button'
 import Loader from './base/Loader';
 import Error from './base/Error';
 import Success from './base/Success'
+import Backdrop from './base/Backdrop'
 import AmenityForm from './base/AmenityForm'
 
 
@@ -19,7 +20,7 @@ import AmenityForm from './base/AmenityForm'
 
 export default function AdminAmenities() {
 
-  const [value, setvalue] = useState(0);
+  const [addForm, setAddForm] = useState(false);
 
   const [removeAmenity, { err, amenity }] = useMutation(REMOVE_AMENITY);
   
@@ -28,7 +29,7 @@ export default function AdminAmenities() {
 
   useEffect(() => {
     setAmenities ( data?.viewAmenities || [])
-    console.log(data);
+    console.log(`data is ${data}`);
   }, [data]);
 
   async function amenitySelect(id, name, type, description) {
@@ -36,7 +37,7 @@ export default function AdminAmenities() {
     console.log(`button returns: ${id}, ${name}, ${type}, ${description}`)
   }
 
-  async function amenityDelete(id) {
+  async function deleteHandler(id) {
     
     try {
       const { data } = await removeAmenity({
@@ -44,7 +45,7 @@ export default function AdminAmenities() {
           amenityId: id
         },
       })
-      setvalue(value + 1);
+      
       return (<Success message="Item Deleted" />)
     } catch (error) {
       console.error(error)
@@ -52,8 +53,9 @@ export default function AdminAmenities() {
     
   }
 
-  async function newAmenity() {
+  async function addHandler() {
 
+    setAddForm(true);
     console.log(`clicked on newAmenity button`)
     // return (<AmenityForm />)
   }
@@ -77,20 +79,22 @@ export default function AdminAmenities() {
             </tr>
           </thead>
           <tbody>
-            {amenities.length && (amenities.map(amenity => {
-              return <tr className="ml-5">
+            {amenities.length ? (amenities.map(amenity => {
+              return <tr key={amenity._id} className="ml-5">
                 <td className="pl-2">{amenity.amenityName}</td>
                 <td className="pl-2">{amenity.amenityType}</td>
                 <td className="pl-5">{amenity.amenityDescription}</td>
                 <td className="text-center pl-2"><button onClick={() => { amenitySelect(amenity._id, amenity.amenityName, amenity.amenityType, amenity.amenityDescription) }}>📋</button></td>
-                <td className="text-center pl-2"><button onClick={() => { amenityDelete(amenity._id) }}>💩</button></td>
+                <td className="text-center pl-2"><button onClick={() => { deleteHandler(amenity._id) }}>💩</button></td>
               </tr>
-            }))}
+            })): null}
           </tbody>
         </table>
         <hr className="mb-5"></hr>
         <div>
-          <Button text='Add Amenity' onClick={newAmenity()}  />
+          <Button text='Add Amenity' onClick={addHandler} />
+          {addForm && <AmenityForm />}
+          {/* {addForm && <Backdrop />} */}
         </div>
       </div>
     </>

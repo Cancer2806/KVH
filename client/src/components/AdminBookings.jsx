@@ -29,35 +29,34 @@ export default function AdminBookings() {
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-
         <table className="table-auto">
           <thead className=" bg-green-500 text-lg">
             <tr>
-              <th className="text-center">Checkin &nbsp; </th>
-              <th className="text-center">Checkout &nbsp; </th>
-              <th className="pl-2">Cottage &nbsp; </th>
-              <th className="text-left">Guest &nbsp; </th>
-              <th className="pl-2">Adults &nbsp; </th>
-              <th className="pl-2">Children &nbsp; </th>
-              <th className="text-center">Date Confirmed &nbsp; </th>
-              <th className="pl-2">Status &nbsp; </th>
-              <th className="text-center">Amount &nbsp; </th>
+              <th className="text-center">Checkin</th>
+              <th className="text-center">Checkout</th>
+              <th className="pl-2">Cottage</th>
+              <th className="text-left pl-3">Guest</th>
+              <th className="pl-2">Adults</th>
+              <th className="pl-2">Children</th>
+              <th className="text-center pl-2">Date Confirmed</th>
+              <th className="pl-2">Status</th>
+              <th className="text-center pl-2">Amount</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.length && (bookings.map(booking => {
-              return <tr>
-                <td className="text-center">{booking.checkin} &nbsp; </td>
-                <td className="text-center">{booking.checkout} &nbsp; </td>
-                <td className="text-left pl-2">{booking.cottageName} &nbsp; </td>
-                <td className="text-left">{booking.guestEmail} &nbsp;  &nbsp; </td>
-                <td className="text-center">{booking.numAdults} &nbsp; </td>
-                <td className="text-center">{booking.numChildren} &nbsp; </td>
-                <td className="text-center">{booking.dateConfirmed} &nbsp; </td>
-                <td className="text-center">{booking.Status} &nbsp; </td>
-                <td className="text-right">{booking.amount} &nbsp; </td>
+            {bookings.length ? (bookings.map(booking => {
+              return <tr key={booking._id}>
+                <td className="text-center pl-2">{booking.checkin}</td>
+                <td className="text-center pl-2">{booking.checkout}</td>
+                <td className="text-left pl-3">{booking.cottageName}</td>
+                <td className="text-left pl-3">{booking.guestEmail}</td>
+                <td className="text-center">{booking.numAdults}</td>
+                <td className="text-center">{booking.numChildren}</td>
+                <td className="text-center">{booking.dateConfirmed}</td>
+                <td className="text-center">{booking.Status}</td>
+                <td className="text-right">{booking.amount}</td>
               </tr>
-            }))}
+            })): null}
           </tbody>
         </table>
         <hr></hr>

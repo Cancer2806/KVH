@@ -40,14 +40,14 @@ export default function AdminUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.length && (users.map(user => {
-              return <tr className="ml-5">
+            {users.length ? (users.map(user => {
+              return <tr key={user._id} className="ml-5">
                 <td className="pl-2">{user.firstName}</td>
                 <td className="pl-2">{user.lastName}</td>
                 <td className="pl-5">{user.userEmail}</td>
                 <td className="text-center pl-2">{user.userType}</td>
               </tr>
-            }))}
+            })) : null}
           </tbody>
         </table>
         <hr></hr>

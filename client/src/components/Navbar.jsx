@@ -51,7 +51,7 @@ export default function Navbar() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <a href="/">
+                  <Link to="/">
                     <img
                       className="block md:hidden h-8 w-auto"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
@@ -61,7 +61,7 @@ export default function Navbar() {
                       className="hidden md:block h-8 w-2/3"
                       src={`${process.env.PUBLIC_URL}/assets/images/footerlogo.png`}
                       alt="Logo"
-                    /></a>
+                    /></Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">

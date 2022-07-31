@@ -42,18 +42,20 @@ const BookingPage = () => {
 
   // set initial form state
 
-  const { loading, data } = useQuery(QUERY_ALL_COTTAGES);
-  const cottageData = data?.viewCottages || [];
-
-  const [cottages, setCottages] = useState(cottageData)
+  const { loading, err, data } = useQuery(QUERY_ALL_COTTAGES);
+  
+  const [cottages, setCottages] = useState([])
   const [amount, setAmount] = useState(0)
 
+  useEffect(() => {
+    setCottages(data?.viewCottages || [])
+},[])
 
   // TODO Issue with this as it either renders in an endless loop, or only runs once - need to re-run if Reservation Form changes
   // /TODO Issue with this in that a cottage with two bookings can give a false availability
   // It may be better to filter out a cottage as soon as found to be unavailable
 
-  useEffect(() => {
+  useEffect(()=>{
     let tempCottages = [];
 
     for (const cottage of cottages) {
@@ -83,7 +85,7 @@ const BookingPage = () => {
     }
 
     setCottages(tempCottages)
-  }, []);
+  },[])
 
   async function cottageSelect(cottId, cottName, cottrate) {
     setAmount(numDays * cottrate)
@@ -123,7 +125,7 @@ const BookingPage = () => {
           <ReservationForm />
         </div>
         {loading && (<Loader />)}
-        {error && (<Error />)}
+        {(error || err) && (<Error />)}
         {/* TODO Booking details to show at top of screen in box, above available cottage list */}
         <div className="w-full max-w-md box-border h-64 p-4 border-4">
 
@@ -145,7 +147,7 @@ const BookingPage = () => {
             <div>
               <div>
                 <Card
-                  key={cottage.cottageNumber}
+                  key={cottage._id}
                   img={cottage.images[0]}
                   number={cottage.cottageNumber}
                   title={cottage.cottageName}

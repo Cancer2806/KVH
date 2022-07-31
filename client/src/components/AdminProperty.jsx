@@ -28,9 +28,9 @@ export default function AdminProperty() {
       <div>
         {loading && (<Loader />)}
         {error && (<Error />)}
-        {property.length && (property.map(property => {
+        {property.length ? (property.map(property => {
           return (
-            <>
+            <div key={property._id}>
               <h2 className="text-xl pl-5 pr-5 mr-10">Property Name: &nbsp; <strong>{property.propertyName}</strong></h2>
               <hr></hr>
               <h3 className="pl-5 pr-5 mr-10">Description: &nbsp; <strong>{property.propertyDescription}</strong></h3>
@@ -43,19 +43,19 @@ export default function AdminProperty() {
               <h4 className="pl-5 pr-5 mr-10">Postal Address:&nbsp; <strong>{property.postalAddress}</strong></h4>
               <h4 className="pl-5 pr-5 mr-10">Contact Person: &nbsp; <strong>{property.contact}</strong></h4>
               <hr></hr>
-              {property.images.length && (property.images.map(image => {
+              {property.images.length ? (property.images.map(image => {
                 return (
-                  <div>
+                  <div key={image}>
                     <img className="rounded-lg w-160 md:w-320 lg:w-480" src={`${process.env.PUBLIC_URL}${image}`} alt="Not viewable" />
 
                     <p>Image location: {image}</p>
                   </div>
                 )
-              }))}
+              })): null}
               <hr></hr>
-            </>
+            </div>
           )
-        }))}
+        })) : null}
         <hr></hr>
       </div>
     </>

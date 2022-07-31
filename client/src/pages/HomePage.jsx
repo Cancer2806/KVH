@@ -31,7 +31,7 @@ const HomePage = () => {
         return (
           
           
-            <Card key={cottage.cottageNumber}
+            <Card key={cottage._id}
               img={cottage.images[0]}
               number={cottage.cottageNumber}
               title={cottage.cottageName}
