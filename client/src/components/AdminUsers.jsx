@@ -9,7 +9,7 @@ import Error from './base/Error';
 
 
 
-// TODO Allow admin to update any and all details.  Standard is to change to Admin status
+// TODO Allow admin to update user details.  Standard is to change to Admin status
 // TODO show bookings as subset of each User or proived a button and select to see bookings
 
 

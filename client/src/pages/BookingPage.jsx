@@ -89,7 +89,7 @@ const BookingPage = () => {
     setAmount(numDays * cottrate)
 
     // if logged in - continue with booking
-    // TODO if not logged in - open Register/Login as a Modal but without losing booking data 
+    // TODO if not logged in - open Register/Login but without losing booking data 
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 

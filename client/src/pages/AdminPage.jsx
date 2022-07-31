@@ -10,7 +10,9 @@ import AuthService from '../utils/auth';
 import AdminBookings from "../components/AdminBookings";
 import AdminCottages from "../components/AdminCottages";
 import AdminUsers from "../components/AdminUsers";
+import AdminAmenities from "../components/AdminAmenities";
 import AdminProperty from "../components/AdminProperty";
+
 
 // TODO import components for tabs
 const { TabPane } = Tabs;
@@ -41,7 +43,10 @@ export default function AdminPage() {
         <TabPane tab="Users" key="3">
           <AdminUsers />
         </TabPane>
-        <TabPane tab="Property" key="4">
+        <TabPane tab="Amenities" key="4">
+          <AdminAmenities />
+        </TabPane>
+        <TabPane tab="Property" key="5">
           <AdminProperty />
         </TabPane>
       </Tabs>

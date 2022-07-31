@@ -15,8 +15,7 @@ const amenitySchema = new Schema(
       type: String,
     },
     amenityType: {
-      type: [String],
-      enum: ["Fun", "Warmth", "Entertain","Pleasure"]
+      type: String,
     },
   },
   {

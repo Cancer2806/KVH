@@ -116,3 +116,14 @@ export const QUERY_USERS = gql`
   }
 }
   `
+
+export const QUERY_AMENITIES = gql`
+  query viewAmenities {
+    viewAmenities {
+    _id
+    amenityName
+    amenityDescription
+    amenityType
+    }
+  }
+  `
