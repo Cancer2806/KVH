@@ -4,6 +4,7 @@ import { BackTop, Tabs, Tag } from "antd";
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_AMENITIES } from '../utils/queries';
 import { REMOVE_AMENITY } from "../utils/mutations";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Button from './base/Button'
 import Loader from './base/Loader';
@@ -20,13 +21,11 @@ export default function AdminAmenities() {
 
   const [addForm, setAddForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
+  
+  const { state } = useLocation();
+  let navigate = useNavigate();
 
-  let aid = ''
-  let aname = ''
-  let atype = ''
-  let adescription = ''
-
-  const [removeAmenity, { err, amenity }] = useMutation(REMOVE_AMENITY);
+  const [removeAmenity, { error: err, data: amenity }] = useMutation(REMOVE_AMENITY);
 
   const { loading, error, data } = useQuery(QUERY_AMENITIES);
   const [amenities, setAmenities] = useState([]);
@@ -38,16 +37,11 @@ export default function AdminAmenities() {
   // Function for handling update
   async function selectHandler(id, name, type, description) {
     console.log(`button starts with: ${id}, ${name}, ${type}, ${description}`)
-    aid = id;
-    aname = name;
-    atype = type;
-    adescription = description;
 
-    console.log(`aid is ${aid}`)
-    console.log(`aname is ${aname}`)
-    setUpdateForm(true)
-    console.log(`button returns: ${id}, ${name}, ${type}, ${description}`)
-    { AmenityForm(id=aid, name=aname, type=type, description=adescription)}
+    if (id) {
+      navigate('/updateAmenity', { state: { id: id, name: name, type: type, description: description } })
+    }
+    // setUpdateForm(true)
   }
 
   // Function for handling poop
@@ -59,16 +53,16 @@ export default function AdminAmenities() {
           amenityId: id
         },
       }).then(
-        <Success message="Item Deleted" />
+        // <Success message="Item Deleted" />
+        navigate('/admin')
       )
-
     } catch (error) {
       console.error(error)
     }
   }
 
+  // Function to expose Add Type Form
   async function addHandler() {
-    console.log(`somehow got here`)
     setAddForm(true);
   }
 
@@ -105,9 +99,7 @@ export default function AdminAmenities() {
         <hr className="mb-5"></hr>
         <div>
           <Button text='Add Amenity' onClick={addHandler} />
-          {addForm && <AmenityForm id='' name='' type='' description='' />}
-          {updateForm && <AmenityForm id={aid} name={aname} type={atype} description={adescription} />}
-
+          {addForm && <AmenityForm />}
           {/* {addForm && <Backdrop />} */}
         </div>
       </div>

@@ -123,23 +123,10 @@ const resolvers = {
       return Amenity.findOneAndDelete({ _id: amenityId });
     },
 
-
-    // resolver for updating Cottage details - admin only
-    // updateCottage: async (parent, { _id, cottageName }) => {
-
-    //   try {
-    //     const foundCottage = await Cottage.findOneAndUpdate(
-    //       { cottageName: foundCottage.cottageName },
-    //     );
-    //     if (!foundCottage) {
-    //       throw new Error(`Could not find cottage with this name`);
-    //     }
-    //     return foundCottage;
-    //   } catch { error } {
-    //     console.log(error);
-    //     throw error;
-    //   };
-    // },
+    // resolver for updating an Amenity
+    updateAmenity: async (parent, { _id, amenityName, amenityDescription, amenityType }) => {
+      return Amenity.findByIdAndUpdate(_id, { amenityName, amenityDescription, amenityType }, { new: true });
+    },
   },
 }
 

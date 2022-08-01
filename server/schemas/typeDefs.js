@@ -111,15 +111,12 @@ type Mutation {
   removeAmenity(
     amenityId: ID!): Amenity
 
-  # updateCottage(
-  #   cottageName: String!
-  #   numRooms: Int!
-  #   cottageDescription: String
-  #   amenities: [Amenity]
-  #   maxGuests: Int!
-  #   images: [String]
-  #   bookings: [Booking]
-  # ): Cottage
+  updateAmenity(
+    _id: ID!
+    amenityName: String!
+    amenityDescription: String
+    amenityType: String
+  ): Amenity
 }
 `;
 

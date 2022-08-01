@@ -55,6 +55,16 @@ export const ADD_AMENITY = gql`
   }
 `
 
+// ADD_AMENITY will enter a cottage booking request
+export const UPDATE_AMENITY = gql`
+  mutation updateAmenity($amenityId: ID!, $amenityName: String!, $amenityDescription: String, $amenityType: String ) {
+    updateAmenity(_id: $amenityId, amenityName: $amenityName, amenityDescription: $amenityDescription, amenityType: $amenityType) {
+      amenityDescription
+      amenityType
+    }
+  }
+`
+
 // REMOVE_AMENITY will remove an Amenity
 export const REMOVE_AMENITY = gql`
   mutation removeAmenity($amenityId: ID!) {

@@ -56,7 +56,6 @@ const ReservationForm = () => {
 
       if (checkin && checkout && reservationData.numAdults > 0) {
         navigate('/booking', { state: { checkin: checkinStr, checkout: checkoutStr, numAdults: reservationData.numAdults, numChildren: reservationData.numChildren, numDays: numDays } })
-
       }
     } catch (err) {
       console.error(err);

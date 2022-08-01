@@ -10,7 +10,7 @@ import Loader from '../components/base/Loader';
 import Error from '../components/base/Error';
 import Success from '../components/base/Success'
 
-const HomePage = () => {
+export default function HomePage() {
 
   const { loading: load1, error: error1, data: data1 } = useQuery(QUERY_PROPERTY);
   const { loading, error, data } = useQuery(QUERY_ALL_COTTAGES);
@@ -29,13 +29,13 @@ const HomePage = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row">
-        <div className="md:block pr-10" >
+        <div className="md:block pr-2 min-w-fit" >
           <ReservationForm />
         </div>
         {loading && (<Loader />)}
         {(error) && (<Error />)}
 
-        <div className="w-full max-w-full box-border h-84 p-4 border-4">
+        <div className="w-full max-w-5xl box-border h-84 p-2 border-4">
           <div>
             {property.length ? (property.map(property => {
               return (
@@ -46,9 +46,7 @@ const HomePage = () => {
                   <h3 className="pl-5 pr-1 mr-1 text-xs text-center"><strong>{property.propertyDescription}</strong></h3>
                   <hr></hr>
                   <h6 className="pl-5 pr-5 mr-10 text-xs text-center">Email: &nbsp; <strong>{property.propertyEmail}</strong></h6>
-
                   <h6 className="pl-5 pr-5 mr-10 text-xs text-center">Address: &nbsp; <strong>{property.streetAddress}</strong></h6>
-
                   <h4 className="pl-5 pr-5 mr-10 text-center"><strong>{property.contact} would love to see you here</strong></h4>
                   <hr></hr>
                   {property.images.length ?
@@ -78,5 +76,3 @@ const HomePage = () => {
       </div>
     </>);
 };
-
-export default HomePage;

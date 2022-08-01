@@ -20,6 +20,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
+import UpdateAmenity from './components/base/UpdateAmenity';
 
 
 // Construct main GraphQL API endpoint
@@ -102,6 +103,10 @@ function App() {
             <Route
               path='/admin'
               element={<AdminPage />}
+            />
+            <Route
+              path='/updateAmenity'
+              element={<UpdateAmenity />}
             />
             <Route
               path='*'
