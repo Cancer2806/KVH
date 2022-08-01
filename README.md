@@ -1,12 +1,12 @@
 # Cottage Bookings
-Accommodation Website and Booking Application
+Responsive Accommodation Website and Booking Application
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
   
 
 ## Description
 
-The application allows visitors to browse the Site and then to book accommodation once happy that it meets their needs.  In order to finalise a booking, a visitor must create a User profile.  Once the User profile is complete, a logged in Guest can view their bookings, current and previous, and also view their profile.  The application uses the MERN stack, with a GraphQl/Apollo middleware arrangement.  Users with 'admin' privileges can view and update bookings (update/confirm/cancel), property details, cottage/room details and users (determining who should have admin privileges).  
+The responsive application allows visitors to browse the Site and then to book accommodation once happy that it meets their needs.  In order to finalise a booking, a visitor must create a User profile.  Once the User profile is complete, a logged in Guest can view their bookings, current and previous, and also view their profile.  The application uses the MERN stack, with a GraphQl/Apollo middleware arrangement.  Users with 'admin' privileges can view and update bookings (update/confirm/cancel), property details, cottage/room details and users (determining who should have admin privileges).  
 The application is currently a work in progress.  
 
 <br>
@@ -34,53 +34,56 @@ The application is currently a work in progress.
 
   Once complete, the application will be completely intuitive for users.  Note that User profiles cannot be viewed unless the User has logged in (the menu access will only appear once logged in).  Likewise, the Administrator console only becomes available once a User with 'admin' privileges has logged in.   
 
-  The application is deployed at:  https://mernbooksearch007.herokuapp.com/
+  The application is deployed at:  https://kvh.herokuapp.com/
  
   <br>
 
-  The Git repository for the applicaton is held at:  https://github.com/Cancer2806/Mern_Booksearch.  The original REST code can be found at: https://github.com/Cancer2806/Rest_Booksearch
+  The Git repository for the applicaton is held at:  https://github.com/Cancer2806/KVH.
 
 <br>
 
   Following are screenshots showing the application in use:  
 
 
-Login Screen:
+Landing Page:
 <br>
-<img src="./assets/images/LoginScreen.png" width=700 alt = "Login Screen">  
-This screen allows a previous User to Login.  It also provides a button to allow a new User to Signup and create a profile.   
+<img src="./assets/LandingPage.png" width=700 alt = "Login Screen">  
+This screen provides an initial view of the cottages available, and provides a component for booking in.  The Navbar is universal across the application, with the logging in and logged in menus appearing to the right.   
 
 <br>
 
-Saved Books:
+Login:
 <br>
-<img src="./assets/images/Saved Books.png" width=700 alt = "Saved Books View">  
-Provides a view of the Books saved by the User and allows the User to delete a book if no longer wanted   
+<img src="./assets/Login.png" width=700 alt = "Saved Books View">  
+Screen to allow registered users to log in.   
 
 <br>
 
-Search Screen:
+Administrator Console:
 <br>
-<img src="./assets/images/BookSearch.png" width=700 alt = "Logged In Blog View">  
-Landing page for the application.  From here, a visitor can conduct a book search or choose to Signup and create a profile.  Similarly, a previously signed up User can log in.   
+<img src="./assets/AdminConsole.png" width=700 alt = "Logged In Blog View">  
+The administrator's console provides tabs which each show key information.   
 
 <br>
 
 ## Features  
 
-  Users passwords are encrypted using bcrypt.  JWT Tokens are used for User authentication, once the User has logged in.   
+  Users passwords are encrypted using bcrypt.  JWT Tokens are used for User authentication.  DotEnv has been used to secure key details.  Responsivenes, and Navbar changes to suit the logged in status are also considered features.  Once operational, the booking in system will also be a key feature.   
 
 <br>
 
 ## Credits  
 
-  The UWA Full Stack Web Developers Bootcamp provided the starter code as part of the Bootcamp.  Heroku and Atlas were used for Deployment of the App.  The app makes use of the full MERN stack.  Apollo and GraphQL were used for route control and database access.      
+  The application was initially developed as the final project for the UWA Full Stack Web Developers Bootcamp.  
+  Heroku and Atlas were used for Deployment of the App.  The app makes use of the full MERN stack (Mongo, Express, React, Node).  Apollo and GraphQL were used for route control and database access.  
+  Tailwind / HeadlessUI have been used for styling, whilst Antd provided the Datepicker and Tab components.      
+  Youtube videos by Traversy Media, Pedro Tech and Academind were also useful particularly for the React side of things.
 
 <br>
 
 ## Contributing  
 
-  Please advise by email if there are any contributions you'd like to make.      
+  Please advise by email if there are any contributions or suggestions you'd like to make.      
 
 
 
