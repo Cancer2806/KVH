@@ -28,10 +28,7 @@ const BookingPage = () => {
   let navigate = useNavigate();
 
   //  call ADD_BOOKING mutation
-  const [addBooking, { error, bookingdata }] = useMutation(ADD_BOOKING);
-  // let run = true;
-
-  console.log(`checkinDate: ${state.checkin}, ${state.checkout}`)
+  const [addBooking, { error: err, data: bookingdata }] = useMutation(ADD_BOOKING);
 
   let numAdults = Number(state.numAdults)
   let numChildren = Number(state.numChildren)
@@ -39,17 +36,15 @@ const BookingPage = () => {
   const requestin = moment(state.checkin, "DD-MM-YYYY")
   const requestout = moment(state.checkout, "DD-MM-YYYY")
 
-
   // set initial form state
 
-  const { loading, err, data } = useQuery(QUERY_ALL_COTTAGES);
-  
+  const { loading, error, data } = useQuery(QUERY_ALL_COTTAGES);
   const [cottages, setCottages] = useState([])
   const [amount, setAmount] = useState(0)
 
   useEffect(() => {
     setCottages(data?.viewCottages || [])
-},[])
+},[data])
 
   // TODO Issue with this as it either renders in an endless loop, or only runs once - need to re-run if Reservation Form changes
   // /TODO Issue with this in that a cottage with two bookings can give a false availability
@@ -84,7 +79,7 @@ const BookingPage = () => {
       }
     }
 
-    setCottages(tempCottages)
+    // setCottages(tempCottages)
   },[])
 
   async function cottageSelect(cottId, cottName, cottrate) {
@@ -125,8 +120,8 @@ const BookingPage = () => {
           <ReservationForm />
         </div>
         {loading && (<Loader />)}
-        {(error || err) && (<Error />)}
-        {/* TODO Booking details to show at top of screen in box, above available cottage list */}
+        {(error) && (<Error />)}
+
         <div className="w-full max-w-md box-border h-64 p-4 border-4">
 
           <div>
@@ -144,7 +139,7 @@ const BookingPage = () => {
       <div className="p-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
         {cottages.map((cottage, index) => {
           return (
-            <div>
+            <div key={cottage._id}>
               <div>
                 <Card
                   key={cottage._id}

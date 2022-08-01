@@ -77,7 +77,7 @@ The administrator's console provides tabs which each show key information.
   The application was initially developed as the final project for the UWA Full Stack Web Developers Bootcamp.  
   Heroku and Atlas were used for Deployment of the App.  The app makes use of the full MERN stack (Mongo, Express, React, Node).  Apollo and GraphQL were used for route control and database access.  
   Tailwind / HeadlessUI have been used for styling, whilst Antd provided the Datepicker and Tab components.      
-  Youtube videos by Traversy Media, Pedro Tech and Academind were also useful particularly for the React side of things.
+  Youtube videos by Traversy Media, Pedro Tech and Academind were also useful.  The Udemy MERN Stack: Hotel Booking App with React, Node, Mongo 2021 was also useful for initial guidance, although it is structured differently and does not use GraphQl/Apollo.
 
 <br>
 
