@@ -11,7 +11,6 @@ export default function Card(props) {
           <img className="w-full h-auto rounded-t-lg" src={`${process.env.PUBLIC_URL}${props.img}`} alt="Cottage" />
         <div className="px-6 py-4">
           <h3 className="text-gray-900 text-xl font-medium mb-2">{props.number}: &nbsp; {props.title}</h3>
-          <h4 className="text-gray-700 text-base mb-4">Rooms: {props.rooms}&nbsp; &nbsp; Max Pax: {props.max}</h4>
           <p className="text-gray-700 text-base mb-4">{props.text}</p>
           
           {/* Button to open modal window with more details on the cottage */}
