@@ -13,51 +13,63 @@ import Backdrop from './base/Backdrop'
 import AmenityForm from './base/AmenityForm'
 
 
-// TODO Allow admin to create a new Amenity
-// TODO Allow admin to create a new Amenity Type
-// TODO Allow admin to remove an Amenity type - check that also removed from any cottage that is using it
+// TODO Allow admin Add, Update, Read, Delete Amenities
 
 
 export default function AdminAmenities() {
 
   const [addForm, setAddForm] = useState(false);
+  const [updateForm, setUpdateForm] = useState(false);
+
+  let aid = ''
+  let aname = ''
+  let atype = ''
+  let adescription = ''
 
   const [removeAmenity, { err, amenity }] = useMutation(REMOVE_AMENITY);
-  
+
   const { loading, error, data } = useQuery(QUERY_AMENITIES);
   const [amenities, setAmenities] = useState([]);
 
   useEffect(() => {
-    setAmenities ( data?.viewAmenities || [])
-    console.log(`data is ${data}`);
+    setAmenities(data?.viewAmenities || [])
   }, [data]);
 
-  async function amenitySelect(id, name, type, description) {
- 
+  // Function for handling update
+  async function selectHandler(id, name, type, description) {
+    console.log(`button starts with: ${id}, ${name}, ${type}, ${description}`)
+    aid = id;
+    aname = name;
+    atype = type;
+    adescription = description;
+
+    console.log(`aid is ${aid}`)
+    console.log(`aname is ${aname}`)
+    setUpdateForm(true)
     console.log(`button returns: ${id}, ${name}, ${type}, ${description}`)
+    { AmenityForm(id=aid, name=aname, type=type, description=adescription)}
   }
 
+  // Function for handling poop
   async function deleteHandler(id) {
-    
+    console.log(`pooping`)
     try {
       const { data } = await removeAmenity({
         variables: {
           amenityId: id
         },
-      })
-      
-      return (<Success message="Item Deleted" />)
+      }).then(
+        <Success message="Item Deleted" />
+      )
+
     } catch (error) {
       console.error(error)
     }
-    
   }
 
   async function addHandler() {
-
+    console.log(`somehow got here`)
     setAddForm(true);
-    console.log(`clicked on newAmenity button`)
-    // return (<AmenityForm />)
   }
 
   return (
@@ -67,7 +79,7 @@ export default function AdminAmenities() {
       <div>
         {loading && (<Loader />)}
         {(error || err) && (<Error />)}
-        
+
         <table className="table-auto mb-5">
           <thead className=" bg-green-500 text-xl">
             <tr>
@@ -84,16 +96,18 @@ export default function AdminAmenities() {
                 <td className="pl-2">{amenity.amenityName}</td>
                 <td className="pl-2">{amenity.amenityType}</td>
                 <td className="pl-5">{amenity.amenityDescription}</td>
-                <td className="text-center pl-2"><button onClick={() => { amenitySelect(amenity._id, amenity.amenityName, amenity.amenityType, amenity.amenityDescription) }}>📋</button></td>
+                <td className="text-center pl-2"><button onClick={() => { selectHandler(amenity._id, amenity.amenityName, amenity.amenityType, amenity.amenityDescription) }}>📋</button></td>
                 <td className="text-center pl-2"><button onClick={() => { deleteHandler(amenity._id) }}>💩</button></td>
               </tr>
-            })): null}
+            })) : null}
           </tbody>
         </table>
         <hr className="mb-5"></hr>
         <div>
           <Button text='Add Amenity' onClick={addHandler} />
-          {addForm && <AmenityForm />}
+          {addForm && <AmenityForm id='' name='' type='' description='' />}
+          {updateForm && <AmenityForm id={aid} name={aname} type={atype} description={adescription} />}
+
           {/* {addForm && <Backdrop />} */}
         </div>
       </div>

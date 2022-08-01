@@ -8,13 +8,16 @@ import 'antd/dist/antd.css';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client'
 import { ADD_AMENITY } from '../../utils/mutations';
+import Success from '../base/Success';
 
 
 
 // define and set state for User login form
-export default function AmenityForm (id, name, type, description) {
+export default function AmenityForm (props) {
 
-  const [formData, setFormData] = useState({ name: name, type: type, description: description });
+  console.log(`props received: ${props.id}, ${props.name}, ${props.type}, ${props.description}`);
+
+  const [formData, setFormData] = useState({ amenityName: props.name, amenityType: props.type, amenityDescription: props.description });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [addAmenity, {error}] = useMutation(ADD_AMENITY);
@@ -43,9 +46,10 @@ export default function AmenityForm (id, name, type, description) {
     try {
       const { data } = await addAmenity({
         variables: { ...formData },
-      })
+      }).then(
+        navigate('/')
+      )
 
-      // addAmenity
       // updateAmenity
 
      
@@ -73,41 +77,45 @@ export default function AmenityForm (id, name, type, description) {
 
           {/* TODO consider validation and alerts if something is wrong */}
 
-          <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="flex flex-col flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-white">
               <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='name'>Name</label>
               <input
-                className="appearance-none w-1/2 block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none w-full block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 placeholder=""
-                name="name"
+                name="amenityName"
                 type="text"
-                id="name"
+                id="amenityName"
+                defaultValue={props.name}
                 onChange={handleInputChange}
                 value={formData.name}
                 required
               />
               {/* </div> */}
             </div>
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <div className="w-full h-full px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='description'>Description</label>
-              <input
-                className="appearance-none block w-1/2 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              <textarea
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 placeholder=""
-                name="description"
+                name="amenityDescription"
                 type="text"
-                id="description"
+                id="amenityDescription"
+                defaultValue={props.description}
+                rows="2"
                 onChange={handleInputChange}
                 value={formData.description}
-              />
+              ></textarea>
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='type'>Type</label>
               <input
-                className="appearance-none block w-1/2 bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 placeholder=""
-                name="type"
+                name="amenityType"
                 type="text"
-                id="type"
+                id="amenityType"
+                defaultValue={props.type}
                 onChange={handleInputChange}
                 value={formData.type}
               />
