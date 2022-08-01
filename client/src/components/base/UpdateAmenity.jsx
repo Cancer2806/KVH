@@ -6,13 +6,12 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { UPDATE_AMENITY } from '../../utils/mutations';
 import Success from './Success';
 
 
-
-// define and set state for User login form
+// define and set state for form
 export default function AmenityForm(props) {
   
   const { state } = useLocation();
@@ -22,9 +21,6 @@ export default function AmenityForm(props) {
   let amenityName = (state.name);
   let amenityType = (state.type);
   let amenityDescription = (state.description);
-
-
-  console.log(`state received: ${amenityId}, ${amenityName}, ${amenityType}, ${amenityDescription}`);
 
   const [formData, setFormData] = useState({ amenityId: amenityId, amenityName: amenityName, amenityType: amenityType, amenityDescription: amenityDescription });
 
@@ -57,7 +53,6 @@ export default function AmenityForm(props) {
       )
     } catch (err) {
       console.error(err);
-      
     }
     // reset the form
   };
@@ -71,7 +66,6 @@ export default function AmenityForm(props) {
           Go to About Page (Link #1)
         </Link> */}
           
-
           {/* TODO consider validation and alerts if something is wrong */}
 
           <div className="flex flex-col flex-wrap -mx-3 mb-6">

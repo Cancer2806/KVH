@@ -12,7 +12,7 @@ import Success from '../base/Success';
 
 
 
-// define and set state for User login form
+// define and set state for form
 export default function AmenityForm (props) {
 
   const [formData, setFormData] = useState({ amenityName: '', amenityType: '', amenityDescription: '' });

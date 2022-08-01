@@ -18,8 +18,7 @@ import Success from '../components/base/Success'
 import AuthService from '../utils/auth';
 
 // TODO TODO TODO
-// Display only available cottages - issue with logic if cottage has multiple bookings
-// Allow guest to select cottage 
+// Display only available cottages - issue with logic if cottage has multiple bookings 
 // Login or signup User to obtain guest details and complete booking: modal and without losing details
 
 const BookingPage = () => {

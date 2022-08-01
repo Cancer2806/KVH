@@ -1,7 +1,5 @@
-// import apollo and define typeDefs for GraphQl
+// File containing the typeDefs for GraphQl/Apollo
 const { gql } = require('apollo-server-express');
-
-// TODO develop typeDefs and Mutations as needed
 
 const typeDefs = gql`
   type Cottage {

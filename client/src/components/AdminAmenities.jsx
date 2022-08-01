@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BackTop, Tabs, Tag } from "antd";
 
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_AMENITIES } from '../utils/queries';
@@ -12,9 +11,6 @@ import Error from './base/Error';
 import Success from './base/Success'
 import Backdrop from './base/Backdrop'
 import AmenityForm from './base/AmenityForm'
-
-
-// TODO Allow admin Add, Update, Read, Delete Amenities
 
 
 export default function AdminAmenities() {
@@ -32,12 +28,10 @@ export default function AdminAmenities() {
 
   useEffect(() => {
     setAmenities(data?.viewAmenities || [])
-  }, [data]);
+  }, [data, amenity]);
 
   // Function for handling update
   async function selectHandler(id, name, type, description) {
-    console.log(`button starts with: ${id}, ${name}, ${type}, ${description}`)
-
     if (id) {
       navigate('/updateAmenity', { state: { id: id, name: name, type: type, description: description } })
     }
@@ -46,7 +40,6 @@ export default function AdminAmenities() {
 
   // Function for handling poop
   async function deleteHandler(id) {
-    console.log(`pooping`)
     try {
       const { data } = await removeAmenity({
         variables: {
