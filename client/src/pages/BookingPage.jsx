@@ -44,7 +44,7 @@ const BookingPage = () => {
 
   useEffect(() => {
     setCottages(data?.viewCottages || [])
-},[data])
+  }, [data]);
 
   // TODO Issue with this as it either renders in an endless loop, or only runs once - need to re-run if Reservation Form changes
   // /TODO Issue with this in that a cottage with two bookings can give a false availability
