@@ -71,8 +71,6 @@ const HomePage = () => {
               img={cottage.images[0]}
               number={cottage.cottageNumber}
               title={cottage.cottageName}
-              rooms={cottage.numRooms}
-              max={cottage.maxGuests}
               text={cottage.cottageDescription}
             />
           )
