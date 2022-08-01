@@ -6,7 +6,7 @@ export default function Card(props) {
 
   return (
 
-      <div className="rounded overflow-hidden shadow-lg">
+      <div className="rounded overflow-hidden shadow-lg max-w-xl">
         <div>
           <img className="w-full h-auto rounded-t-lg" src={`${process.env.PUBLIC_URL}${props.img}`} alt="Cottage" />
         <div className="px-6 py-4">

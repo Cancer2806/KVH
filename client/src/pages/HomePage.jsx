@@ -59,9 +59,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <h2 className="text-center text-3xl mt-10
-      ">Our Cottages</h2>
-      <div className="p-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+      <h2 className="text-center text-3xl mt-10">Our Cottages</h2>
+      <div className="p-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 max-w-8xl">
         {cottages.map((cottage, index) => {
           return (
             <Card
