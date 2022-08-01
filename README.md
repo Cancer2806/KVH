@@ -40,6 +40,10 @@ The application is currently a work in progress.
 
   The Git repository for the applicaton is held at:  https://github.com/Cancer2806/KVH.
 
+  <br>
+
+  A presentation on the application can be found at: https://docs.google.com/presentation/d/1SRF5wPSVQnTcuhDQTFqywMti3uF2Td4kh-h-gQ6K3qI/edit?usp=sharing
+
 <br>
 
   Following are screenshots showing the application in use:  

@@ -115,8 +115,8 @@ const BookingPage = () => {
 
   return (
     <>
-      <div className="flex">
-        <div className="hidden md:block pr-10" >
+      <div className="flex flex-col md:flex-row">
+        <div className="md:block pr-10" >
           <ReservationForm />
         </div>
         {loading && (<Loader />)}
