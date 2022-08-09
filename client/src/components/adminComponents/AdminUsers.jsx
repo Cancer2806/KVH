@@ -1,11 +1,12 @@
+// Component used to display table of Users
 import React, { useState, useEffect } from "react";
+import { useQuery } from '@apollo/client';
 import { Tabs, Tag } from "antd";
 
-import { useQuery } from '@apollo/client';
-import { QUERY_USERS } from '../utils/queries';
+import { QUERY_USERS } from '../../utils/queries';
 
-import Loader from './base/Loader';
-import Error from './base/Error';
+import Loader from '../base/Loader';
+import Error from '../base/Error';
 
 
 // TODO Allow admin to update user details.  Standard is to change to Admin status

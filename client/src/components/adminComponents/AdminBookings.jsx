@@ -1,11 +1,13 @@
+// Component used to display table of bookings
+
 import React, { useState, useEffect } from "react";
+import { useQuery, } from '@apollo/client';
 import { Tabs, Tag } from "antd";
 
-import { useQuery, } from '@apollo/client';
-import { QUERY_BOOKINGS } from '../utils/queries';
+import { QUERY_BOOKINGS } from '../../utils/queries';
 
-import Loader from './base/Loader';
-import Error from './base/Error';
+import Loader from '../base/Loader';
+import Error from '../base/Error';
 
 
 // TODO Allow admin to update any and all details.  Standard is to confirm/cancel

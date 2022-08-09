@@ -1,4 +1,5 @@
-// Component for displaying User signup form
+// This Page to be refactored as a component of the Home Page
+
 // import required dependencies
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';

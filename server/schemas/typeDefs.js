@@ -45,8 +45,11 @@ const typeDefs = gql`
     lastName: String!
     userEmail: String!
     userType: String
-    # numStays: Int
+    userPhone: String
+    userSuburb: String
+    userPostcode: String
     bookings: [Booking]
+      # numStays: Int
   }
 
   type Booking {
@@ -71,9 +74,10 @@ const typeDefs = gql`
   type Query {
     me: User
     viewCottages: [Cottage]
+    viewCottage(_id: ID!): Cottage
     viewAmenities: [Amenity]
     viewProperty: [Property]
-    viewUsers: [User]
+    viewUsers: [User] 
     viewBookings: [Booking]
   }
 
@@ -107,7 +111,8 @@ type Mutation {
   ): Amenity
 
   removeAmenity(
-    amenityId: ID!): Amenity
+    amenityId: ID!
+  ): Amenity
 
   updateAmenity(
     _id: ID!

@@ -1,3 +1,4 @@
+// This page to be refactored to a component displaying as needed
 
 import React from 'react';
 

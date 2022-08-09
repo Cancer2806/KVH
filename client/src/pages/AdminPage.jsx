@@ -1,17 +1,20 @@
+// Page only accessible by logged in Admin User
+
 import React, { useState, useEffect } from "react";
+import { useQuery, } from '@apollo/client';
+import { useNavigate } from 'react-router-dom';
+
 import { Tabs, Tag } from "antd";
 import { Tab } from '@headlessui/react'
 
-import { useQuery, } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import AuthService from '../utils/auth';
 
-import AdminBookings from "../components/AdminBookings";
-import AdminCottages from "../components/AdminCottages";
-import AdminUsers from "../components/AdminUsers";
-import AdminAmenities from "../components/AdminAmenities";
-import AdminProperty from "../components/AdminProperty";
+import AdminBookings from "../components/adminComponents/AdminBookings";
+import AdminCottages from "../components/adminComponents/AdminCottages";
+import AdminUsers from "../components/adminComponents/AdminUsers";
+import AdminAmenities from "../components/adminComponents/AdminAmenities";
+import AdminProperty from "../components/adminComponents/AdminProperty";
 
 
 // TODO import components for tabs

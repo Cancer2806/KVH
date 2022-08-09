@@ -1,8 +1,10 @@
+// This page only accessable to logged in User
 import React, { useState, useEffect } from "react";
-import { Tabs, Tag } from "antd";
-
 import { useQuery, useMutation } from '@apollo/client';
 import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
+
+import { Tabs, Tag } from "antd";
+
 import { QUERY_ME } from '../utils/queries';
 import AuthService from '../utils/auth';
 

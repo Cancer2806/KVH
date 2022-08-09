@@ -1,3 +1,4 @@
+// This page to be refactored as a child component of HomePage
 
 import React from 'react';
 

@@ -25,6 +25,10 @@ const resolvers = {
       return await Cottage.find({}).populate('bookings').populate('amenities');
     },
 
+    viewCottage: async (parents, args) => {
+      return await Cottage.findById({ _id: args._id }).populate('bookings');
+    },
+
     viewAmenities: async () => {
       return await Amenity.find({})
     },

@@ -20,7 +20,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
-import UpdateAmenity from './components/base/UpdateAmenity';
+import UpdateAmenity from './components/adminComponents/UpdateAmenity';
 
 
 // Construct main GraphQL API endpoint

@@ -1,3 +1,4 @@
+// This page to be refactored as a component of the Home Page
 
 import React from 'react';
 

@@ -1,16 +1,17 @@
+// Component used to display table of amenities with edit/delete/add functionality
 import React, { useState, useEffect } from "react";
 
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_AMENITIES } from '../utils/queries';
-import { REMOVE_AMENITY } from "../utils/mutations";
+import { QUERY_AMENITIES } from '../../utils/queries';
+import { REMOVE_AMENITY } from "../../utils/mutations";
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import Button from './base/Button'
-import Loader from './base/Loader';
-import Error from './base/Error';
-import Success from './base/Success'
-import Backdrop from './base/Backdrop'
-import AmenityForm from './base/AmenityForm'
+import Button from '../base/Button'
+import Loader from '../base/Loader';
+import Error from '../base/Error';
+import Success from '../base/Success'
+import Backdrop from '../base/Backdrop'
+import AmenityForm from './AmenityForm'
 
 
 export default function AdminAmenities() {

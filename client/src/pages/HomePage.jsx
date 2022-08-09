@@ -1,11 +1,12 @@
-
+// This page to be used as Landing page and parent of all components that don't need logon to access
 import React, { useState, useEffect } from 'react';
-
 import { useQuery, useMutation } from '@apollo/client';
+
 import { QUERY_ALL_COTTAGES, QUERY_PROPERTY } from '../utils/queries';
 
 import Card from '../components/base/Card';
 import ReservationForm from '../components/base/ReservationForm';
+
 import Loader from '../components/base/Loader';
 import Error from '../components/base/Error';
 import Success from '../components/base/Success'
