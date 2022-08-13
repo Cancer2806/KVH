@@ -28,7 +28,7 @@ export default function AdminAmenities() {
   const [amenities, setAmenities] = useState([]);
 
   useEffect(() => {
-    setAmenities(data?.amenities || [])
+    setAmenities(data?.viewAmenities || [])
   }, [data, amenity]);
 
   // Function for handling update
@@ -42,14 +42,14 @@ export default function AdminAmenities() {
   // Function for handling poop
   async function deleteHandler(id) {
     try {
-      const { amenity } = await removeAmenity({
-        variables: { amenityId: id },
-        refetchQueries: [{query: VIEW_AMENITIES}],
-      })
-      //   .then(
-      //   // <Success message="Item Deleted" />
-      //   navigate('/admin')
-      // )
+      const { data } = await removeAmenity({
+        variables: {
+          amenityId: id
+        },
+      }).then(
+        // <Success message="Item Deleted" />
+        navigate('/admin')
+      )
     } catch (error) {
       console.error(error)
     }

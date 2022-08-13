@@ -117,9 +117,9 @@ export const QUERY_USERS = gql`
 }
   `
 
-export const QUERY_AMENITIES = gql`
+export const VIEW_AMENITIES = gql`
   query viewAmenities {
-    viewAmenities {
+    amenities {
     _id
     amenityName
     amenityDescription

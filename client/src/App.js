@@ -22,6 +22,20 @@ import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
 import UpdateAmenity from './components/adminComponents/UpdateAmenity';
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        amenities: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+      },
+    },
+  },
+});
+
 
 // Construct main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,7 +58,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   // Set client to execute the authentication middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: cache,
 });
 
 function App() {

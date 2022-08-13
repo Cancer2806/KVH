@@ -75,7 +75,7 @@ const typeDefs = gql`
     me: User
     viewCottages: [Cottage]
     viewCottage(_id: ID!): Cottage
-    viewAmenities: [Amenity]
+    amenities: [Amenity]
     viewProperty: [Property]
     viewUsers: [User] 
     viewBookings: [Booking]

@@ -1,125 +1,119 @@
-// Form component for adding a new amenity
-
-// import the required dependencies
 import React, { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client'
-import { useNavigate } from 'react-router-dom';
-import 'antd/dist/antd.css';
+import { FaPlus } from 'react-icons/fa';
+import { useMutation } from '@apollo/client';
 
 import { ADD_AMENITY } from '../../utils/mutations';
+import { VIEW_AMENITIES } from '../../utils/queries';
 
-import Success from '../base/Success';
+export default function AmenityForm() {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [type, setType] = useState('');
 
+  const [addAmenity] = useMutation(ADD_AMENITY, {
+    variables: { amenityName: name, amenityDescription: description, amenityType: type },
+    update(cache, { data: { addAmenity } }) {
+      const { amenities } = cache.readQuery({ query: VIEW_AMENITIES });
 
-// define and set state for form
-export default function AmenityForm (props) {
+      cache.writeQuery({
+        query: VIEW_AMENITIES,
+        data: { amenities: [...amenities, addAmenity] },
+      });
+    },
+  });
 
-  const [formData, setFormData] = useState({ amenityName: '', amenityType: '', amenityDescription: '' });
-  const [validated] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [addAmenity, {error}] = useMutation(ADD_AMENITY);
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  let navigate = useNavigate();
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // check if valid data has been entered into the form
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    if (name === '') {
+      return alert('Please include a name for the amenity');
     }
+    addAmenity(name, description, type);
 
-    try {
-      const { data } = await addAmenity({
-        variables: { ...formData },
-      }).then(
-        navigate('/admin')
-      )     
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+    // clear the form
+    setName('');
+    setDescription('');
+    setType('');
   };
 
   return (
     <>
-      <div className="w-full max-w-sm">
-        <form className="bg-emerald-800 text-white shadow-md rounded-xl px-8 pt-6 pb-8 ml-5 mb-4 max-w-lg" onSubmit={handleFormSubmit}>
-          <h2 className="text-white text-center text-xl">Add an Amenity</h2>
-          {/* <Link to="/booking" state={{ checkin }}>
-          Go to About Page (Link #1)
-        </Link> */}
-          
+      <button
+        type='button'
+        className='btn btn-secondary'
+        data-bs-toggle='modal'
+        data-bs-target='#amenityForm'
+      >
+        <div className="d-flex align-items-center">
+          <FaPlus className='=ícon' />
+          <div>&nbsp; Add Amenity</div>
+        </div>
+      </button>
 
-          {/* TODO consider validation and alerts if something is wrong */}
+      <div
+        className='modal fade'
+        id='amenityForm'
+        aria-labelledby='amenityFormLabel'
+        aria-hidden='true'
+      >
+        <div className='modal-dialog'>
+          <div className='modal-content'>
+            <div className='modal-header'>
+              <h5 className='modal-title' id='amenityFormLabel'>
+                Add Amenity
+              </h5>
+              <button
+                type='button'
+                className='btn-close'
+                data-bs-dismiss='modal'
+                aria-label='Close'
+              >Close</button>
+            </div>
+            <div className='modal-body'>
+              <form onSubmit={onSubmit}>
+                <div className='mb-3'>
+                  <label className='form-label'>Amenity Name</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='name'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className='mb-3'>
+                  <label className='form-label'>Description</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='description'
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                </div>
+                <div className='mb-3'>
+                  <label className='form-label'>Type</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='type'
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  />
+                </div>
 
-          <div className="flex flex-col flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 text-white">
-              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='name'>Name</label>
-              <input
-                className="appearance-none w-full block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                placeholder=""
-                name="amenityName"
-                type="text"
-                id="amenityName"
-                defaultValue={props.name}
-                onChange={handleInputChange}
-                value={formData.name}
-                required
-              />
-              {/* </div> */}
-            </div>
-            <div className="w-full h-full px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='description'>Description</label>
-              <textarea
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                placeholder=""
-                name="amenityDescription"
-                type="text"
-                id="amenityDescription"
-                defaultValue={props.description}
-                rows="2"
-                onChange={handleInputChange}
-                value={formData.description}
-              ></textarea>
-            </div>
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-white text-xs font-bold mb-2" htmlFor='type'>Type</label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                placeholder=""
-                name="amenityType"
-                type="text"
-                id="amenityType"
-                defaultValue={props.type}
-                onChange={handleInputChange}
-                value={formData.type}
-              />
+                <button
+                  type='submit'
+                  data-bs-dismiss='modal'
+                  className='btn btn-secondary'
+                >
+                  Submit
+                </button>
+              </form>
             </div>
           </div>
-          {/* {error ? (
-            <div>
-              <p className="error-text">Please check the details entered</p>
-            </div>
-          ) : null} */}
-          <div className="flex-row ">
-            {/* Button to open Bookings Screen */}
-            <button className=" b-5 inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" type="submit">Add</button>
-          </div>
-        </form>
+        </div>
       </div>
     </>
-  );
-};
-
+  )
+}
